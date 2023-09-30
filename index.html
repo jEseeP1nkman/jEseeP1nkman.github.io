@@ -148,6 +148,373 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python - 副本 (2)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/09/30/Python%20-%20%E5%89%AF%E6%9C%AC%20(2)/">Python 测试 年龄计算</a>
+    </h1>
+  
+
+        
+        <a href="/2023/09/30/Python%20-%20%E5%89%AF%E6%9C%AC%20(2)/" class="archive-article-date">
+  	<time datetime="2023-09-30T06:14:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">tk=Tk()</span><br><span class="line">tk.title(<span class="string">&#x27;年龄计算&#x27;</span>)</span><br><span class="line">tk.minsize(<span class="number">240</span>,<span class="number">200</span>)</span><br><span class="line">tk.maxsize(<span class="number">240</span>,<span class="number">200</span>)</span><br><span class="line">tk.config(bg=<span class="string">&#x27;#232323&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lb1 =Label(</span><br><span class="line">    text=<span class="string">&#x27;输入你的出生年龄or年龄：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;SimHei&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb1.pack()</span><br><span class="line"></span><br><span class="line">en1 = Entry()</span><br><span class="line">en1.pack()</span><br><span class="line"></span><br><span class="line">lb2 =Label(</span><br><span class="line">    text=<span class="string">&#x27;你的出生年龄为：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;SimHei&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb2.pack()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span>  <span class="title function_">age</span>():</span><br><span class="line">    age = <span class="built_in">int</span>(en1.get())</span><br><span class="line">    age_now = time.localtime().tm_year</span><br><span class="line">    age_oped = age_now-age</span><br><span class="line">    <span class="keyword">if</span> age_oped&lt;<span class="number">0</span>:</span><br><span class="line">        lb2.config(text=<span class="string">f&#x27;你的出生年龄为：<span class="subst">&#123;age_oped&#125;</span>,宝宝还未出生&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        lb2.config(text=<span class="string">f&#x27;你的出生年龄为：<span class="subst">&#123;age_oped&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">btn=Button(</span><br><span class="line">    text=<span class="string">&#x27;计算&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    command=age</span><br><span class="line">)</span><br><span class="line">btn.pack()</span><br><span class="line"></span><br><span class="line">tk.mainloop()</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/09/30/Python%20-%20%E5%89%AF%E6%9C%AC%20(2)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python 测试 年龄计算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E5%B9%B4%E9%BE%84%E8%AE%A1%E7%AE%97/">Python 测试 年龄计算</a>
+    </h1>
+  
+
+        
+        <a href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E5%B9%B4%E9%BE%84%E8%AE%A1%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2023-09-30T06:14:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">tk=Tk()</span><br><span class="line">tk.title(<span class="string">&#x27;年龄计算&#x27;</span>)</span><br><span class="line">tk.minsize(<span class="number">240</span>,<span class="number">200</span>)</span><br><span class="line">tk.maxsize(<span class="number">240</span>,<span class="number">200</span>)</span><br><span class="line">tk.config(bg=<span class="string">&#x27;#232323&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lb1 =Label(</span><br><span class="line">    text=<span class="string">&#x27;输入你的出生年龄or年龄：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;SimHei&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb1.pack()</span><br><span class="line"></span><br><span class="line">en1 = Entry()</span><br><span class="line">en1.pack()</span><br><span class="line"></span><br><span class="line">lb2 =Label(</span><br><span class="line">    text=<span class="string">&#x27;你的出生年龄为：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;SimHei&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb2.pack()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span>  <span class="title function_">age</span>():</span><br><span class="line">    age = <span class="built_in">int</span>(en1.get())</span><br><span class="line">    age_now = time.localtime().tm_year</span><br><span class="line">    age_oped = age_now-age</span><br><span class="line">    <span class="keyword">if</span> age_oped&lt;<span class="number">0</span>:</span><br><span class="line">        lb2.config(text=<span class="string">f&#x27;你的出生年龄为：<span class="subst">&#123;age_oped&#125;</span>,宝宝还未出生&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        lb2.config(text=<span class="string">f&#x27;你的出生年龄为：<span class="subst">&#123;age_oped&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">btn=Button(</span><br><span class="line">    text=<span class="string">&#x27;计算&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    command=age</span><br><span class="line">)</span><br><span class="line">btn.pack()</span><br><span class="line"></span><br><span class="line">tk.mainloop()</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E5%B9%B4%E9%BE%84%E8%AE%A1%E7%AE%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python 测试 计算器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E8%AE%A1%E7%AE%97%E5%99%A8/">Python 测试 计算器</a>
+    </h1>
+  
+
+        
+        <a href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E8%AE%A1%E7%AE%97%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2023-09-30T06:14:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span>*</span><br><span class="line">tk = Tk()</span><br><span class="line">tk.title(<span class="string">&#x27;四则运算&#x27;</span>)</span><br><span class="line">tk.minsize(width=<span class="number">250</span>,height=<span class="number">220</span>)</span><br><span class="line">tk.maxsize(width=<span class="number">250</span>,height=<span class="number">220</span>)</span><br><span class="line">tk.config(bg=<span class="string">&#x27;#232323&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lb1 = Label(</span><br><span class="line">    text=<span class="string">&#x27;四则运算&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;微软正体&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb1.pack()</span><br><span class="line"></span><br><span class="line">lb2 = Label(</span><br><span class="line">    text=<span class="string">&#x27;第一个数字：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb2.pack()</span><br><span class="line"></span><br><span class="line">en1 = Entry()</span><br><span class="line">en1.pack()</span><br><span class="line"></span><br><span class="line">lb_fuhao = Label(</span><br><span class="line">    text=<span class="string">&#x27;输入运算符号&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb_fuhao.pack()</span><br><span class="line"></span><br><span class="line">en_fuhao = Entry()</span><br><span class="line">en_fuhao.pack()</span><br><span class="line"></span><br><span class="line">lb3 = Label(</span><br><span class="line">    text=<span class="string">&#x27;第二个数字：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb3.pack()</span><br><span class="line"></span><br><span class="line">en2 = Entry()</span><br><span class="line">en2.pack()</span><br><span class="line"></span><br><span class="line">lb4 = Label(</span><br><span class="line">    text=<span class="string">&#x27;运算结果为：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb4.pack()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">op</span>():</span><br><span class="line">    num1 = <span class="built_in">float</span>(en1.get())</span><br><span class="line">    fuhao = en_fuhao.get()</span><br><span class="line">    num2 = <span class="built_in">float</span>(en2.get())</span><br><span class="line">    <span class="keyword">if</span> fuhao ==<span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">        numJia = num1+num2</span><br><span class="line">        lb4.config(text=<span class="string">f&#x27;数字一加以数字二值为：<span class="subst">&#123;numJia&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> fuhao ==<span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">        numJian = num1-num2</span><br><span class="line">        lb4.config(text=<span class="string">f&#x27;数字一减以数字二值为：<span class="subst">&#123;numJian&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> fuhao ==<span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">        numChen = num1*num2</span><br><span class="line">        lb4.config(text=<span class="string">f&#x27;数字一乘以数字二值为：<span class="subst">&#123;numChen&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> fuhao ==<span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">        numChu = num1/num2</span><br><span class="line">        lb4.config(text=<span class="string">f&#x27;数字一除以数字二值为：<span class="subst">&#123;numChu&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> fuhao == <span class="string">&#x27;egg&#x27;</span>:</span><br><span class="line">        lb4.config(text=<span class="string">f&#x27;This is egg!!!&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        lb4.config(text=<span class="string">f&#x27;符号不可以为其他！,Only (+ - * /)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">btn1 = Button(</span><br><span class="line">    text=<span class="string">&#x27;运算&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    command=op</span><br><span class="line">)</span><br><span class="line">btn1.pack()</span><br><span class="line"></span><br><span class="line">tk.mainloop()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E8%AE%A1%E7%AE%97%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python 测试 随机数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E9%9A%8F%E6%9C%BA%E6%95%B0/">Python 测试 随机数</a>
+    </h1>
+  
+
+        
+        <a href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E9%9A%8F%E6%9C%BA%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2023-09-30T06:14:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">tk = Tk()</span><br><span class="line">tk.minsize(width=<span class="number">400</span>,height=<span class="number">200</span>)</span><br><span class="line">tk.maxsize(width=<span class="number">400</span>,height=<span class="number">200</span>)</span><br><span class="line">tk.title(<span class="string">&#x27;给予一个范围输出一个随机数&#x27;</span>)</span><br><span class="line">tk.config(bg=<span class="string">&#x27;#232323&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lb1 = Label(</span><br><span class="line">    text=<span class="string">&#x27;给予一个范围：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;微软正体&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb1.pack()</span><br><span class="line"></span><br><span class="line">lb2 = Label(</span><br><span class="line">    text=<span class="string">&#x27;最小值&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb2.pack()</span><br><span class="line"></span><br><span class="line">en1 =Entry()</span><br><span class="line">en1.pack()</span><br><span class="line"></span><br><span class="line">lb3 = Label(</span><br><span class="line">    text=<span class="string">&#x27;最大值&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb3.pack()</span><br><span class="line"></span><br><span class="line">en2 =Entry()</span><br><span class="line">en2.pack()</span><br><span class="line"></span><br><span class="line">lb4 = Label(</span><br><span class="line">    text=<span class="string">f&#x27;输出结果为：&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;white&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb4.pack()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">randomNumber</span>():</span><br><span class="line">    getMin = <span class="built_in">int</span>(en1.get())</span><br><span class="line">    getMax = <span class="built_in">int</span>(en2.get())</span><br><span class="line">    randomN = <span class="built_in">str</span>(random.randint(getMin,getMax))</span><br><span class="line">    lb4.config(text=<span class="string">f&#x27;输出结果为：<span class="subst">&#123;randomN&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">btn = Button(</span><br><span class="line">    text=<span class="string">&#x27;运行！&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    command=randomNumber</span><br><span class="line">)</span><br><span class="line">btn.pack()</span><br><span class="line"></span><br><span class="line">tk.mainloop()</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20%E9%9A%8F%E6%9C%BA%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python 测试 BMI计算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20BMI%E8%AE%A1%E7%AE%97/">Python 测试 BMI计算</a>
+    </h1>
+  
+
+        
+        <a href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20BMI%E8%AE%A1%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2023-09-30T06:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span>*</span><br><span class="line">tk =Tk()</span><br><span class="line">tk.title(<span class="string">&#x27;BMI计算器&#x27;</span>)</span><br><span class="line">tk.minsize(<span class="number">230</span>,<span class="number">200</span>)</span><br><span class="line">tk.maxsize(<span class="number">230</span>,<span class="number">200</span>)</span><br><span class="line">tk.config(bg=<span class="string">&#x27;#232323&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lb1 = Label(</span><br><span class="line">    text=<span class="string">&#x27;BMI计算&#x27;</span>,</span><br><span class="line">    font=<span class="string">&#x27;SimHei&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span></span><br><span class="line">)</span><br><span class="line">lb1.pack()</span><br><span class="line"></span><br><span class="line">lb2 = Label(</span><br><span class="line">    text=<span class="string">&#x27;输入你的体重(kg):&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb2.pack()</span><br><span class="line"></span><br><span class="line">en1 = Entry()</span><br><span class="line">en1.pack()</span><br><span class="line"></span><br><span class="line">lb3 = Label(</span><br><span class="line">    text=<span class="string">&#x27;输入你的身高(m):&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb3.pack()</span><br><span class="line"></span><br><span class="line">en2 = Entry()</span><br><span class="line">en2.pack()</span><br><span class="line"></span><br><span class="line">lb4 = Label(</span><br><span class="line">    text=<span class="string">&#x27;你的BMI为:&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb4.pack()</span><br><span class="line"></span><br><span class="line">lb5 = Label(</span><br><span class="line">    text=<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;Skyblue&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">lb5.pack()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 過重：24&lt;=BMI&lt;27</span></span><br><span class="line"><span class="comment"># 輕度肥胖：27 &lt;= BMI &lt; 30</span></span><br><span class="line"><span class="comment"># 中度肥胖：30 &lt;= BMI &lt; 35</span></span><br><span class="line"><span class="comment"># 重度肥胖：BMI &gt;= 35</span></span><br><span class="line"><span class="comment"># kg/㎡</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bmi</span>():</span><br><span class="line">    widget = <span class="built_in">float</span>(en1.get())</span><br><span class="line">    height = <span class="built_in">float</span>(en2.get())</span><br><span class="line">    BMI = widget/(height*height)</span><br><span class="line">    lb4.config(text=<span class="string">f&#x27;你的BMI为:<span class="subst">&#123;BMI&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="number">24</span>&gt;=BMI&gt;=<span class="number">18.5</span>:</span><br><span class="line">        lb5.config(text=<span class="string">&#x27;你是正常BMI&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> BMI&lt;<span class="number">18.5</span>:</span><br><span class="line">        lb5.config(text=<span class="string">&#x27;你是过于消瘦&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="number">27</span>&gt;BMI&gt;<span class="number">24</span>:</span><br><span class="line">        lb5.config(text=<span class="string">&#x27;你是过重&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="number">30</span>&gt;BMI&gt;=<span class="number">27</span>:</span><br><span class="line">        lb5.config(text=<span class="string">&#x27;你是轻度肥胖&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="number">35</span>&gt;BMI&gt;=<span class="number">30</span>:</span><br><span class="line">        lb5.config(text=<span class="string">&#x27;你是中度肥胖&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="number">35</span>&gt;=BMI:</span><br><span class="line">        lb5.config(text=<span class="string">&#x27;你是重度肥胖&#x27;</span>)</span><br><span class="line"></span><br><span class="line">btn = Button(</span><br><span class="line">    text=<span class="string">&#x27;计算&#x27;</span>,</span><br><span class="line">    bg=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">    fg=<span class="string">&#x27;#232323&#x27;</span>,</span><br><span class="line">    command=bmi</span><br><span class="line">)</span><br><span class="line">btn.pack()</span><br><span class="line"></span><br><span class="line">tk.mainloop()</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/09/30/Python%20%E6%B5%8B%E8%AF%95%20BMI%E8%AE%A1%E7%AE%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Proxy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1111,6 +1478,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
             
             <div class="clearfix"></div>
