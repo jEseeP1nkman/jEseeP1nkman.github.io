@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Steam 离线账号 | jEseeP1nkman's Blog</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/touxiang.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=2.0.10"><!-- inject head--><link rel="canonical" href="http://example.com/2024/08/28/SteamAccount/"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!-- aplayer--><!-- swiper--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="前言了解过我或者关注过我的博客的朋友，应该都知道我以前的博客第一篇写的就是 Steam 离线账号的内容但是之前的那个博客我嫌写的太烂了，然后还推了一大推的乱七八糟的美化插件，所以后来我还是选择将我的老博客删库了。这篇 Steam 离线账号的内容其实是在我用 Cpp 写的 SteamAccount 软"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="jEseeP1nkman's Blog"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/touxiang.ico"><link rel="apple-touch-icon" href="/img/touxiang.ico" sizes="180x180"><script>console.log(' %c Solitude %c ' + '2.0.10' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+          },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: undefined,
+    runtime: '2024-08-20 10:00:00',
+    lazyload: {
+        enable: false,
+        error: '/img/touxiang.png'
+    },
+    copyright: false,
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可"},
+    aside: {
+        sayhello: {
+            morning: "早上好，愚蠢的一天又开始了",
+            noon: "中午好",
+            afternoon: "下午好，坐了一天累了吧",
+            night: "一天才刚刚开始",
+            goodnight: "晚安",
+        },
+        sayhello2: [],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: true
+    },
+    comment: false,
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载","translate":{"translateDelay":0,"defaultEncoding":2}},
+    lure: false,
+    expire: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: false,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- background img--><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><span>标签</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/%E6%B8%B8%E6%88%8F/">游戏<sup>6</sup></a><a href="/tags/%E6%95%99%E7%A8%8B/">教程<sup>5</sup></a><a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍<sup>1</sup></a><a href="/tags/Steam/">Steam<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><img src="/img/touxiang.ico" alt="jEseeP1nkman's Blog"><i class="solitude fa-solid fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">Steam 离线账号</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><span>标签</span></a></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button"><a class="site-page" href="/" title=""><i class="solitude /img/touxiang.png"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="solitude fa-solid fa-dice-d6"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fa-solid fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fa-solid fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/SteamAccount/cover.png" alt="Steam 离线账号"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Steam/"><span class="tags-name tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>Steam</span></a></div></div></div></div><h1 class="post-title">Steam 离线账号</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-08-28 12:49:30"><i class="post-meta-icon solitude fa-solid fa-calendar-days"></i><time datetime="2024-08-28T04:49:30.769Z">2024-08-28T04:49:30.769Z</time></span><span class="post-meta-date" title="最后更新于 2024-08-28 13:06:25"><i class="post-meta-icon solitude fa-solid fa-arrow-rotate-right"></i><time datetime="2024-08-28T05:06:25.414Z">2024-08-28T05:06:25.414Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fa-solid fa-file-word" title="文章字数"></i><span class="word-count">2.2k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fa-solid fa-clock" title="阅读耗时"></i><span>9 min</span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>了解过我或者关注过我的博客的朋友，应该都知道我以前的博客第一篇写的就是 Steam 离线账号的内容<br>但是之前的那个博客我嫌写的太烂了，然后还推了一大推的乱七八糟的美化插件，所以后来我还是选择将我的老博客删库了。<br>这篇 Steam 离线账号的内容其实是在我用 Cpp 写的 SteamAccount 软件中复制下载的，我也是太懒了，没有对它们进行排版啊什么的，全部都是从源代码上复制的，但我相信你们的小脑袋瓜应该能看懂</p>
+<p>因为本博客没有提供搜索内容，账号有很多，请您使用 Ctrl+F 自行搜索</p>
+<p>!我无法保证所有游戏都可以登录,但一定有你喜欢!</p>
+<p>我也是给你解释一下这些函数吧，account(“”); 这个就是一个函数，函数里面的值比如 ：</p>
+<blockquote>
+<p>account(“博德之门3 &#x2F; Baldur’s Game 3”, “ynstpujkhjsl”, “CaT2c4Z09X”);<br>“博德之门3 &#x2F; Baldur’s Game 3” &#x2F;&#x2F; 就是游戏的名字<br>“ynstpujkhjsl” &#x2F;&#x2F; 就是游戏的账号<br>“CaT2c4Z09X” &#x2F;&#x2F; 就是游戏的密码</p>
+</blockquote>
+<h1 id="账号内容"><a href="#账号内容" class="headerlink" title="账号内容"></a>账号内容</h1><p>account(“博德之门3 &#x2F; Baldur’s Game 3”, “ynstpujkhjsl”, “CaT2c4Z09X”);<br>account(“为了吾王II &#x2F; For The King II”, “92402365”, “91834981”);<br>account(“无敌号”, “D5750017”, “36958524578”);<br>account(“无敌号”, “21267599”, “46905558”);<br>account(“艾尔登法环 &#x2F; Elden Ring”, “jghn43915”, “zuobiao7174”);<br>account(“艾尔登法环 &#x2F; Elden Ring”, “ykby84593”, “zuobiao8866”);<br>account(“艾尔登法环 &#x2F; Elden Ring”, “jvsc20776”, “zuobiao3888”);<br>account(“艾尔登法环 &#x2F; Elden Ring”, “dqur15306”, “fss1vqgd”);<br>account(“完蛋！我被美女包围了！”, “jyqml78292”, “li15389078909C”);<br>account(“完蛋！我被美女包围了！”, “uejhl75760”, “cqru47120M”);<br>account(“完蛋！我被美女包围了！”, “eatti17516”, “ptuy39396D”);<br>account(“完蛋！我被美女包围了！”, “ylkce87749”, “shyj06958L”);<br>account(“完蛋！我被美女包围了！”, “reyzp28593”, “ghdl23958L”);<br>account(“完蛋！我被美女包围了！”, “knagw29409”, “zfpl07074G”);<br>account(“只狼”, “pxdn51407”, “5xh9xx6t”);<br>account(“只狼”, “kkzo66132”, “chengyyut233”);<br>account(“只狼”, “hdrtu010”, “chengyu99991”);<br>account(“只狼”, “guanganhuying”, “1997xs2020”);<br>account(“地平线5”, “mezx48845”, “zuobiao1513”);<br>account(“方舟: 生存飞升”, “drdxzafztmxc”, “xiniu1028”);<br>account(“幽灵行者2”, “RGyQH8771”, “xiniu1020”);<br>account(“雨中冒险：回归”, “svvib92669”, “uxxg14840V”);<br>account(“雨中冒险：回归”, “acwxs69668”, “lgjh16925T”);<br>account(“努努之歌：英雄联盟外传”, “aptrl97288”, “xiniu1028”);<br>account(“星空 &#x2F; Starfield”, “29284448”, “66681949”);<br>account(“星空 &#x2F; Starfield”, “scwxingkong”, “Sw230733”);<br>account(“日薄西山 &#x2F; Fading Afternoon”, “20149131”, “96813669”);<br>account(“地铁繁华丨Underground Blossom”, “hfjmq84313”, “obqr13872X”);<br>account(“小偷模拟器2丨Thief Simulator 2”, “aqhvv08536”, “aiew21317J”);<br>account(“异常形态丨Quasimorph”, “omcie80274”, “ocgq47820Y”);<br>account(“Lords of the Fallen 堕落之主”, “cia5M0089”, “0934a8531”);<br>account(“城市天际线2丨Cities: Skylines II”, “eobl39123”, “xiniuchengshi03”);<br>account(“城市天际线2丨Cities: Skylines II”, “mglnv07599”, “class55665gh”);<br>account(“城市天际线2丨Cities: Skylines II”, “ja93IySo”, “hb95APYM”);<br>account(“动物迷城”, “36363359”, “63246606”);<br>account(“动物迷城”, “47233357”, “17188529”);<br>account(“堕落之主”, “00060152”, “19572501”);<br>account(“英雄旧忆”, “HNaqt749048”, “PUpupu9567”);<br>account(“赛博朋克2077”, “akwuja”, “Hh60399tve”);<br>account(“Sea of Stars 星之海”, “Ei9Eu7Ph5Yq4”, “xiniu0829”);<br>account(“三位一体5：发条阴谋”, “td90IHZi”, “xiniu0827”);<br>account(“绝世好武功”, “56997273”, “24177054”);<br>account(“盖娅迷航”, “Ga9461135”, “huanxiang0251”);<br>account(“影子诡局：被诅咒的海盗”, “kvodi30729”, “zuobiao1024”);<br>account(“黑道圣徒重启版丨Saints Row”, “gu62xqtO”, “xiniu0824”);<br>account(“神之亵渎2”, “56185511”, “74514542”);<br>account(“装甲核心6”, “eugo7618”, “chengyukk656”);<br>account(“装甲核心6”, “yxsd9614”, “chengyukk656”);<br>account(“剑士丨Kenshi”, “2NBQhQyw”, “xiniujianshi998”);<br>account(“矮人军团自走棋”, “23235132”, “63543606”);<br>account(“黑相集灰冥界”, “uglzk65643”, “Heixiangji65”);<br>account(“生化危机2重制版”, “pandagame9855”, “xiongmao2100”);<br>account(“黑相集棉兰号”, “uglzk65643”, “Heixiangji65”);<br>account(“心魔”, “pandagamep77”, “pandagame349”);<br>account(“为了吾王”, “paopaota96”, “darenwua66”);<br>account(“无主之地2”, “pandagame3167”, “Wuzhu2988”);<br>account(“无主之地前传”, “pandagame3167”, “Wuzhu2988”);<br>account(“海参2”, “Yu0Sr1Bs1Ez9”, “xiniu58258”);<br>account(“开拓者：拥王者”, “rcuai66623”, “zuobiao2478”);<br>account(“贪婪大地”, “42125659”, “98534290”);<br>account(“命运石之门”, “jkvba867”, “chengyupm456”);<br>account(“请出示文件 &#x2F; 请出示证件”, “pgcx85082”, “zuobiao23512”);<br>account(“瑞奇与叮当 时空跳转”, “fmj4mjja”, “xiniudingdang”);<br>account(“星界战士”, “jjsyl2yzyz2022”, “Youzhai1992”);<br>account(“三国志14PK威力加强版”, “moxiaboxmhw2”, “mhw2moxiabox”);<br>account(“迷离诡夜”, “13096761”, “36693821”);<br>account(“浮岛工厂”, “rjlky95127”, “ytge07072E”);<br>account(“最后的信仰”, “nvboq75387”, “xbsf62288Q”);<br>account(“逸剑风云决”, “44763486”, “54849424”);<br>account(“巧克力与香子兰 &#x2F; nekopara”, “miaomiaoda222”, “shuangbushuang4”);<br>account(“亚托莉：我挚爱的时光 &#x2F; ATRI -My Dear Moments-“, “abxwp153”, “chengyu556”);<br>account(“沉没之地”, “lk16mzHj”, “xiniu0826”);<br>account(“蜜蜂岛”, “wnjut71387”, “xdck40738F”);<br>account(“地铁2023Redux”, “kzjtn26047”, “zuobiao2623”);<br>account(“部落与弯刀”, “pandagame6663”, “banmagame4219”);<br>account(“海贼无双4”, “banmagame6600”, “banmagame0051”);<br>account(“孤岛惊魂2”, “66108417”, “48796397”);<br>account(“GRIS”, “3015975821”, “16198617”);<br>account(“王座陨落丨Thronefall”, “14244407”, “90291122”);<br>account(“拳击俱乐部2：快进未来”, “Quan4518396”, “huanxiang98415”);<br>account(“遗迹2”, “Uc9Ow8Sp5Jm8”, “xiniuyiji2”);<br>account(“学园构想家”, “32817638”, “90594710”);<br>account(“96号公路0号里程丨Road 96: Mile 0”, “19801632”, “55594692”);<br>account(“夏日狂想曲：乡间的难忘回忆”, “52273397”, “49469546”);<br>account(“盖瑞模组 &#x2F; Garry’s Mod”, “qncxx309”, “xbg215700GR”);<br>account(“氧气丨Oxygen”, “76743548”, “90932808”);<br>account(“最后生还者重制版”, “xdy39615”, “chengyu456tkk”);<br>account(“最后生还者重制版”, “teq8412”, “Bcp7892734”);<br>account(“最后生还者重制版”, “wwssoo3759”, “Tj9Qwjsplay”);<br>account(“荒野大镖客2”, “erba76899”, “Z04Red1994”);<br>account(“卧龙：苍天陨落”, “fdsgthhjhjh”, “afddfggghjFF”);<br>account(“卧龙：苍天陨落”, “yl0lb7gj6wc5”, “YjYjlCaxMN”);<br>account(“卧龙：苍天陨落”, “woyz86715”, “LP0506DAAA”);<br>account(“卧龙：苍天陨落”, “prfcfxwe”, “q63dgfyb”);<br>account(“卧龙：苍天陨落”, “gfk6381”, “Bcp9344328”);<br>account(“霍格沃茨之遗”, “48584974”, “KbIqptCF069”);<br>account(“霍格沃茨之遗”, “steamok1089913”, “steamok765”);<br>account(“霍格沃茨之遗”, “hpuk52418”, “clE916kRc”);<br>account(“霍格沃茨之遗”, “dyxt52491”, “Tko265bYM”);<br>account(“艾尔登法环”, “gf4ec1rm4tz0”, “aierdeng9994”);<br>account(“Shadows of Doubt  &#x2F; 凶影疑云”, “51591303”, “30863764”);<br>account(“火山的女儿”, “89751256”, “40834431”);<br>account(“满庭芳：宋上繁华”, “66026572”, “85897246”);<br>account(“我的世界传奇丨Minecraft Legends”, “11588973”, “82834480”);<br>account(“狂怒2”, “banmagame9918”, “banmagame6688”);<br>account(“魔戒：咕噜”, “65256634”, “02736499”);<br>account(“蛇上而生 (Above Snakes)”, “xiniu721141”, “a85762123”);<br>account(“战锤40K：爆矢枪丨Warhammer 40,000: Boltgun”, “49843481”, “19230602”);<br>account(“死亡岛激流终极版 &#x2F; Dead Island Definitive Edition”, “17644158”, “61727616”);<br>account(“死亡岛原始复仇 &#x2F; Dead Island Retro Revenge”, “17644158”, “61727616”);<br>account(“炼金要塞 Castle Of Alchemists”, “91012435”, “18084959”);<br>account(“暗黑地牢2”, “45305887”, “69136573”);<br>account(“奇迹时代4丨Age of Wonders 4”, “4213621985”, “30533206”);<br>account(“乡村狂想曲”, “29818879”, “93610535”);<br>account(“viewfinder 取景器”, “pmgpu46736”, “zuobiao1256”);<br>account(“森林护林员模拟器丨Forest Ranger Simulator”, “99822101”, “63347778”);<br>account(“博德之门3”, “cwaclrpccpth”, “zuobiao54233”);<br>account(“博德之门3”, “banmagame3375”, “banma9987”);<br>account(“博德之门3”, “swbezm3”, “Sw281137”);<br>account(“博德之门3”, “esiKfa3095”, “Hh603951fdn”);<br>account(“博德之门3”, “guailaidi6672”, “GAMEdf7408”);<br>account(“三伏”, “rclph78042”, “y76868676”);<br>account(“三伏”, “youzai5020”, “Leyouz2941”);<br>account(“沉默的蟋蟀”, “85615546”, “48587405”);<br>account(“又一个僵尸幸存者”, “fuzne67198”, “mdyv74421L”);<br>account(“铁血联盟3 &#x2F; Jagged Alliance 3”, “Hx9Ai1Hp3Wr0”, “xiniutiexue30712”);<br>account(“刺客信条4黑旗”, “bhcso099”, “chengyukym2256kk”);<br>account(“骑马与砍杀2”, “31tmg92743”, “FK507GH0302”);<br>account(“天堂的陌生人最终幻想起源”, “513209rFE”, “862803rRj”);<br>account(“师傅 &#x2F; sifu”, “kfzgr98671”, “zuobiao17725”);<br>account(“杀手3”, “cavm64306”, “Hitman301”);<br>account(“史丹利寓言：超豪华版”, “sfgg6580”, “ujy7uwp0”);<br>account(“雨世界”, “hlacs825”, “zuobiao1736”);<br>account(“雨世界”, “85556131”, “70937898”);<br>account(“渔帆暗涌”, “Th3Zb1Dg9Ri6”, “Pm3Tn7Ft5Kz5”);<br>account(“莱莎的炼金工房3”, “qyu18713”, “pzq57705”);<br>account(“缉私警察（Contraband Police）”, “swl06906”, “chengyu4569kk”);<br>account(“雄心壮志 &#x2F; Big Ambitions”, “Hp6Fs1Jh5Ng2”, “Si6Ec6Wv3Xc6”);<br>account(“雄心壮志 &#x2F; Big Ambitions”, “vsaeed6t”, “4zgnu9jy”);<br>account(“天国：拯救”, “mjex65709”, “zuobiao25725”);<br>account(“中华一商”, “axm62749”, “ctf85824”);<br>account(“森林之子”, “13127559”, “47425145”);<br>account(“蛇行武装”, “fzxud320”, “chengyu558”);<br>account(“飞越13号房”, “hongchen99455”, “hongchen33662”);<br>account(“幸福工厂(Satisfactory)”, “f2x7lda8”, “lVqZ36Yup2”);<br>account(“不双修就去世”, “qnl11781”, “gqo44353”);<br>account(“同舟共济”, “zefv79927”, “zuobiao7822”);<br>account(“最终幻想7核心危机”, “cnbgt37771”, “zuobiao8777”);<br>account(“小火车查尔斯”, “rbva9689”, “zuobiao8699”);<br>account(“荣誉骑士2: 君主”, “pbd61440”, “fww34885”);<br>account(“暗邪西部”, “Ya3Aj6Im2Qp8”, “anxie25451”);<br>account(“暗邪西部”, “Vm1Ts9Sl1Hj7”, “sad43VJW”);<br>account(“消失的光芒2 &#x2F; dying light2”, “pewpn81849”, “zuobiao2555”);<br>account(“Far cry 6  (with Uplay)”, “kem96074 ( <a href="mailto:&#101;&#99;&#108;&#105;&#122;&#x64;&#52;&#107;&#54;&#64;&#x31;&#x36;&#51;&#46;&#x63;&#x6f;&#109;">&#101;&#99;&#108;&#105;&#122;&#x64;&#52;&#107;&#54;&#64;&#x31;&#x36;&#51;&#46;&#x63;&#x6f;&#109;</a> )”, “chengyu456788 (chengyu456@KK )”);<br>account(“辐射4”, “wbtq1089036”, “steamok3211”);<br>account(“欧陆风云4”, “agt8729”, “Apk66433”);<br>account(“幸福工厂”, “hrrkj011”, “nkis418162C”);<br>account(“武士零”, “junjun888666535”, “Xiaohejiaoao4548”);<br>account(“小小噩梦2”, “srplno”, “banma3425”);<br>account(“小小噩梦 LittleNightmares”, “hluu10883”, “zuyvbBrIu4li”);<br>account(“层层恐惧2”, “qqsvv289”, “kdq80970U”);<br>account(“生化危机3重制版”, “zhangtao121092685”, “zzz789789”);<br>account(“鬼泣5”, “cvjkdf”, “dfgh002A”);<br>account(“鬼泣HD合集”, “eivot9560”, “6dTShcxrL5Bw”);<br>account(“女神异闻录4”, “sgdfj040”, “cndg5015B”);<br>account(“深岩银河”, “vljwd973”, “aipangpangdianwan”);<br>account(“逃生1.2”, “taosheng431”, “Hh1600431”);<br>account(“美丽水世界深海迷航”, “xinyishui”, “xinxin2212”);<br>account(“美丽水世界2”, “xinyilingdu”, “xinyi3235”);<br>account(“影子武士2”, “jiaoaohehe188840”, “Xiaohehe771888”);<br>account(“城市天际线”, “3205466009ta2”, “TC123456@”);<br>account(“归家异途2”, “gjkemi375”, “kemi2546”);<br>account(“八方旅人”, “ff333331”, “ff147852”);<br>account(“八方旅人”, “huamao698”, “huamao789”);<br>account(“极乐迪斯科”, “junjun888666253”, “Xiaohejiaoao696945”);<br>account(“环世界”, “bpwbyjyqx”, “pkumbty9”);<br>account(“环世界”, “youxisteam222333”, “yyxxyx184145”);<br>account(“古墓丽影暗影”, “lklk9021”, “xin12305”);<br>account(“古墓丽影暗影”, “fcz1tg9xs”, “Euo8xrkqX”);<br>account(“四海兄弟123 最终版”, “20game02”, “TC123456@”);<br>account(“This Is the Police 警察故事 豪华版”, “cnkk24360”, “EJ9GbVey6YS”);<br>account(“蔚蓝 Celeste”, “guavb214”, “psxm17407C”);<br>account(“丧尸围城4”, “dssangshi01”, “Dashe0078”);<br>account(“Nba2k19”, “zjc739192112”, “kkmmff999”);<br>account(“恶灵附身2 The Evil Within”, “psxs56291”, “y9MgJRhxo”);<br>account(“今晚没开 Not Tonight”, “qaqxp47203”, “oyG5MFcGLW”);<br>account(“行尸走肉最终季The Walking Dead The Final Season”, “mryv32141”, “t26fxBmN”);<br>account(“海底大猎杀”, “hs554037”, “QQ248411776qq”);<br>account(“辐射4”, “fushe41a”, “Hh603951a”);<br>account(“苍翼默示录:神观之梦”, “jiaoaohehe188954”, “Xiaohehe100888”);<br>account(“暗黑血统3”, “ahsteam110”, “lg930305”);<br>account(“呼吸边缘”, “wxjs096423”, “f6798999”);<br>account(“山 mountain”, “20gameshan”, “20gamewrs”);<br>account(“冰与火之舞”, “chenxi89420”, “chenxi46520”);<br>account(“潜渊症”, “jiaoaohehe188850”, “Xiaohehe879885”);<br>account(“咒术师学院”, “bdam075903”, “f8679899”);<br>account(“节奏光剑”, “dpknz673”, “hub407090WU”);<br>account(“节奏医生”, “dxrfx266”, “vpn0729H”);<br>account(“往日不再”, “wrbzsteam110”, “lp050677”);<br>account(“SuchArt 艺术家模拟器”, “wiytr352”, “kemi3364”);<br>account(“极限竞速：地平线4”, “dpx874”, “Dd299041”);<br>account(“德军总部 “, “fwjos12755”, “zuobiao1745”);<br>account(“烟花模拟器”, “dztek520”, “hbr2410PV386”);<br>account(“The last of us part 1”, “25942896”, “75638619”);<br>account(“神秘海域4”, “96960172”, “91225025”);<br>account(“战神4”, “teq7878”, “Dcb53542”);<br>account(“地平线西之绝境”, “bxfse34915”, “nrgq14724”);</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/"><img class="post-copyright__author_img_front" src="/img/touxiang.ico"></a><div class="post-copyright__author_name">jEseeP1nkman's Blog</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="social-share"><a class="social-share-ico icon-qq" target="_blank" rel="noopener" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F&amp;title=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7&amp;desc=undefined&amp;summary=undefined&amp;site=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7&amp;pics=%2Fimg%2FSteamAccount%2Fcover.png" title="分享到QQ"><i class="solitude fab fa-qq"></i></a><a class="social-share-ico icon-weibo" target="_blank" rel="noopener" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F&amp;title=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7&amp;pic=%2Fimg%2FSteamAccount%2Fcover.png" title="分享到微博"><i class="solitude fab fa-weibo"></i></a><a class="social-share-ico icon-twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F&amp;text=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7" title="分享到Twitter"><i class="solitude fab fa-twitter"></i></a><a class="social-share-ico icon-facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F" title="分享到Facebook"><i class="solitude fab fa-facebook"></i></a><a class="social-share-ico icon-telegram" target="_blank" rel="noopener" href="https://t.me/share/url?url=http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F&amp;text=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7" title="分享到Telegram"><i class="solitude fab fa-telegram"></i></a><a class="social-share-ico icon-whatsapp" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7 http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F" title="分享到WhatsApp"><i class="solitude fab fa-whatsapp"></i></a><a class="social-share-ico icon-linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fexample.com%2F2024%2F08%2F28%2FSteamAccount%2F&amp;title=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7&amp;summary=undefined&amp;source=Steam%20%E7%A6%BB%E7%BA%BF%E8%B4%A6%E5%8F%B7" title="分享到LinkedIn"><i class="solitude fab fa-linkedin"></i></a></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a href="/"></a>协议，完整转载请注明来自<a href="/">jEseeP1nkman's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Steam/"><span class="tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>Steam<span class="tagsPageCount">1</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/08/28/MetroExodus/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Metro Exodus // 地铁离去</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/26/Library/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">博客图书馆</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-bg-top"><div class="is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div></div><a class="card-info-avatar" target="_blank" rel="noopener" href="https://github.com/jEseeP1nkman" title="头像"><div class="avatar-img"><img src="/img/touxiang.png" alt="头像"></div></a><div class="card-info__desc_group"><div class="author-info__name">jEseeP1nkman</div><div class="author-info__desc"></div><div class="card-info__data is-center"><a href="/archives/" title="累计文章数:13"><div class="length-num">13</div><div class="headline">文章</div></a><a href="/tags/" title="标签总数:4"><div class="length-num">4</div><div class="headline">标签</div></a></div><div class="card-info-social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fa-solid fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E5%86%85%E5%AE%B9"><span class="toc-text">账号内容</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fa-solid fa-map"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/MetroExodus/" title="Metro Exodus // 地铁离去"><img alt="Metro Exodus // 地铁离去" src="/img/MetroExodus/cover.png"></a><div class="content"><span class="title" href="/2024/08/28/MetroExodus/" title="Metro Exodus // 地铁离去">Metro Exodus // 地铁离去</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/SteamAccount/" title="Steam 离线账号"><img alt="Steam 离线账号" src="/img/SteamAccount/cover.png"></a><div class="content"><span class="title" href="/2024/08/28/SteamAccount/" title="Steam 离线账号">Steam 离线账号</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/26/Library/" title="博客图书馆"><img alt="博客图书馆" src="/img/Library/cover.png"></a><div class="content"><span class="title" href="/2024/08/26/Library/" title="博客图书馆">博客图书馆</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/26/%E7%94%B5%E8%84%91%E6%8E%A7%E5%88%B6%E6%89%8B%E6%9C%BA/" title="通过 scrcpy 实现电脑控制手机"><img alt="通过 scrcpy 实现电脑控制手机" src="/img/Scrcpy/cover.png"></a><div class="content"><span class="title" href="/2024/08/26/%E7%94%B5%E8%84%91%E6%8E%A7%E5%88%B6%E6%89%8B%E6%9C%BA/" title="通过 scrcpy 实现电脑控制手机">通过 scrcpy 实现电脑控制手机</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/26/Mods/" title="游戏添加 Mod 教程"><img alt="游戏添加 Mod 教程" src="/img/Mods/cover.png"></a><div class="content"><span class="title" href="/2024/08/26/Mods/" title="游戏添加 Mod 教程">游戏添加 Mod 教程</span></div></div></div></div></div></div></main><footer id="footer"><div id="footer_deal"></div><div id="st-footer"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2024 By&nbsp;<a class="footer-bar-link" href="/">jEseeP1nkman</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="Theme">Theme</a></div></div></div></footer></div><!-- right_menu--><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude fa-solid fa-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude fa-solid fa-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude fa-solid fa-arrow-rotate-right"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude fa-solid fa-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude fa-solid fa-clone"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude fa-solid fa-clipboard"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude fa-regular fa-window-maximize"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude fa-solid fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude fa-solid fa-clone"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude fa-solid fa-cloud-arrow-down"></i><span>下载此图片</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-randomPost" onclick="toRandomPost()||rm.hideRightMenu()"><i class="solitude"></i><span>随机文章</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span class="menu-darkmode-text">浅色模式</span></div><div class="rightMenu-item" id="menu-translate"><i class="solitude fa-solid fa-language"></i><span>轉為繁體</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=2.0.10"></script><script src="/js/main.js?v=2.0.10"></script><script src="/js/third_party/waterfall.min.js?v=2.0.10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=2.0.10"></script><script>dark()
+</script><script src="/js/tw_cn.js?v=2.0.10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script><script src="/js/covercolor/local.js?v=2.0.10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="/js/right_menu.js?v=2.0.10"></script><div class="js-pjax"></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined)
+        document.documentElement.setAttribute('data-theme', 'dark');
+    else
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    typeof rm === 'object' && rm.mode(cachedMode === undefined || cachedMode === 'dark')
+}
+initTheme()</script><!-- google adsense--><!-- search--><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["2024/08/28/MetroExodus/","2024/08/28/SteamAccount/","2024/08/26/Library/","2024/08/26/电脑控制手机/","2024/08/26/Mods/","2024/08/26/MinecrafModsInstall/","2024/08/24/Windows优化与帮助/","2024/08/24/v2rayN食用/","2024/08/24/GhostOfTsushima/","2024/08/24/Cyberpunk2077/","2024/08/24/TheLastOfUsPart1/","2024/08/24/DetroitBecomeHuman/","2024/08/24/BlackMythWukong/"];function toRandomPost(){ pjax.loadUrl(GLOBAL_CONFIG.root+posts[Math.floor(Math.random()*posts.length)]); }</script>
