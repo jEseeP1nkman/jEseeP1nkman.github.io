@@ -250,7 +250,7 @@ const sco = {
     if (bberTalkElement) {
       new Swiper('.swiper-container', {
         direction: 'vertical',
-        loop: true,
+        loop: false,
         autoplay: {
           delay: 3000,
           pauseOnMouseEnter: true
