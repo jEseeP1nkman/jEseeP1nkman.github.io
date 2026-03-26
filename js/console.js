@@ -85,3 +85,8 @@ console.warn = function(msg){
 };
 
 
+
+document.getElementById("menu-darkmode")?.remove();
+document.getElementById("menu-translate")?.remove();
+
+

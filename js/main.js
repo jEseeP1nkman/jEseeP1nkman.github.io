@@ -202,15 +202,6 @@ const sco = {
     greetingElement.textContent = randomGreeting;
     this.lastSayHello = randomGreeting;
   },
-  switchDarkMode() {
-    const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
-    const newMode = isDarkMode ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newMode);
-    utils.saveToLocal.set('theme', newMode, 0.02);
-    utils.snackbarShow(GLOBAL_CONFIG.lang.theme[newMode], false, 2000);
-    if (typeof rm === 'object') rm.mode(!isDarkMode) && rm.hideRightMenu();
-    handleThemeChange(newMode);
-  },
   hideTodayCard: () => document.getElementById('todayCard').classList.add('hide'),
   toTop: () => utils.scrollToDest(0),
   showConsole: () => document.getElementById('console')?.classList.toggle('show', true),
