@@ -30,95 +30,13 @@ function initIphone(){
     style.innerHTML=`
 
 
-        .app-wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 72px; /* 略大于图标宽度 */
-          gap: 5px;
-        }
-        .status-bar{
-          position:absolute;
-          top:0;
-          left:0;
-          width:100%;
-          height:24px;
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          padding:0 8px;
-          box-sizing:border-box;
-          color:#fff;
-          font-size:12px;
-          z-index:50;
-          pointer-events:none;
-          font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-        }
-        .status-left, .status-center, .status-right{
-          display:flex;
-          align-items:center;
-        }
-        .status-left span{
-          margin-right:2px;
-        }
-        /* 信号格子 */
-        .signal-bar{
-          display:flex;
-          align-items:flex-end;
-          margin-right:4px;
-        }
-        .signal-bar div{
-          width:2px;
-          background:#fff;
-          margin-right:1px;
-        }
-        .signal-bar div:nth-child(1){height:4px;}
-        .signal-bar div:nth-child(2){height:6px;}
-        .signal-bar div:nth-child(3){height:8px;}
-        .signal-bar div:nth-child(4){height:10px;}
-        /* Wi-Fi 图标 */
-        .wifi{
-          width:10px;
-          height:10px;
-          border-radius:50%;
-          background:#fff;
-          position:relative;
-          margin-right:4px;
-        }
-        .wifi::before, .wifi::after{
-          content:"";
-          position:absolute;
-          border:1px solid #fff;
-          border-radius:50%;
-          top:-3px; left:-3px; right:-3px; bottom:-3px;
-        }
-        .battery{
-          display:flex;
-          align-items:center;
-          border:1px solid #fff;
-          border-radius:2px;
-          width:25px;
-          height:12px;
-          position:relative;
-          margin-left:4px;
-        }
-        .battery::after{
-          content:"";
-          position:absolute;
-          top:3px;
-          right:-3px;
-          width:2px;
-          height:6px;
-          background:#fff;
-          border-radius:1px;
-        }
-        .battery-level{
-          height:100%;
-          background:#fff;
-          width:60%; /* 模拟电量60% */
-          border-radius:1px;
-        }
-
+      .app-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 72px; /* 略大于图标宽度 */
+        gap: 5px;
+      }
     
       #iphone17-container{
         position:fixed;
@@ -133,8 +51,6 @@ function initIphone(){
         height:860px;
         border-radius:60px;
         padding:12px;
-        background:linear-gradient(145deg,#222,#000);
-        box-shadow:0 40px 100px rgba(0,0,0,.9);
         position:relative;
         overflow:hidden;
       }
