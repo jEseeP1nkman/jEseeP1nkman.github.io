@@ -25,20 +25,15 @@
   transition: transform 0.2s ease;
 }
 
-/* 🌈 镭射 */
 #swiper_container { 
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(255,0,150,0.6), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(0,255,255,0.6), transparent 40%),
-    radial-gradient(circle at 70% 80%, rgba(120,0,255,0.6), transparent 40%),
-    radial-gradient(circle at 30% 70%, rgba(0,255,150,0.6), transparent 40%),
-    linear-gradient(120deg,#ff9de6,#9aa5ff,#7df9ff,#c77dff);
+  background:
+    linear-gradient(120deg, #1B1C20, #1B1C20, #1B1C20, #1B1C20);
 
   background-size: 200% 200%;
-  animation: holoFlow 12s ease-in-out infinite;
+  animation: goldFlow 18s ease-in-out infinite;
 }
 
-@keyframes holoFlow {
+@keyframes goldFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -85,23 +80,13 @@
   z-index:7;
 }
 
-.swiper-ticket-mask {
-  position:absolute;
-  right:-8px;
-  top:0;
-  width:20px;
-  height:100%;
-  background: radial-gradient(circle at 0 10px, transparent 8px, #17161C 9px) repeat-y;
-  background-size:20px 20px;
-  z-index:6;
-}
 
 .ticket-notch {
   position:absolute;
   right:calc(22% - 10px);
   width:20px;
   height:20px;
-  background:#000;
+  background:#1B1C20;
   border-radius:50%;
   z-index:8;
 }
