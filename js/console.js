@@ -233,6 +233,10 @@ document.documentElement.style.setProperty("--efu-secondbg", "#1B1C20");
 
 // ------------------------------------------------------------------------------------------------------------
 
+
+
+// ------------------------------------------------------------------------------------------------------------
+
 document.getElementById("menu-darkmode")?.remove();
 document.getElementById("menu-translate")?.remove();
 

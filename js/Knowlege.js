@@ -1,5 +1,7 @@
 function Knowlege() {
 
+  
+
   // 防止重复创建
   if (document.getElementById("custom-popup")) return;
 
@@ -104,7 +106,11 @@ content.innerHTML = `
   <h3>1. 右键可以开关背景特效</h3>
   <h3>2. 右键可以开关欣赏模式（只保留背景）</h3>
   <h3>3. 右键可以开关手机，或者按下键盘"H"键也可以关闭</h3>
+  <h3>4. 喜欢本Blog的同学如果想要做同款或个别组件的联系我</h3>
+  <h3>微信：jEseeP1nkman</h3>
+  <h3>邮箱：li2510273890@gmail.com</h3>
 `;
+
 
 
 

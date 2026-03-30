@@ -8,7 +8,7 @@
     const cardWidget = document.querySelector('.card-widget.card-navigation');
     if (cardWidget) {
       cardWidget.remove();
-      console.log('card-widget.card-navigation 已删除');
+    //   console.log('card-widget.card-navigation 已删除');
       localStorage.setItem(CARD_REMOVED_KEY, 'true'); // 标记已删除
     }
   }
@@ -41,40 +41,38 @@
 
     const box = document.createElement("div");
     box.id = "quick-nav-box";
-
+// ````````````````````````````````````````````````````````````````````````````````````````````````
     box.innerHTML = `
       <div class="qnav-header">
         <i class="fas fa-th-large"></i>
-        <span>快速导航</span>
+        <span>快捷导航</span>
       </div>
 
       <div class="qnav-grid">
-        <div class="qnav-item" onclick="window.open('/tools/compress')">
+        <div class="qnav-item" onclick="window.open('/2026/03/05/ICT/')">
           <i class="fas fa-file-image"></i>
           <span>压缩工具</span>
         </div>
 
-        <div class="qnav-item" onclick="window.open('/game')">
-          <i class="fas fa-gamepad"></i>
-          <span>老虎机</span>
-        </div>
 
-        <div class="qnav-item" onclick="window.open('/food')">
+
+        <div class="qnav-item" onclick="window.open('/2026/03/03/food/')">
           <i class="fas fa-utensils"></i>
           <span>吃什么</span>
         </div>
 
-        <div class="qnav-item" onclick="window.open('/rename')">
+        <div class="qnav-item" onclick="window.open('/2025/02/16/Rename/')">
           <i class="fas fa-signature"></i>
           <span>重命名</span>
         </div>
 
-        <div class="qnav-item" onclick="window.open('/base64')">
+        <div class="qnav-item" onclick="window.open('/2026/03/05/ToBase64/')">
           <i class="fas fa-camera"></i>
           <span>图片转Base64</span>
         </div>
       </div>
     `;
+// ````````````````````````````````````````````````````````````````````````````````````````````````
 
     container.prepend(box);
 
