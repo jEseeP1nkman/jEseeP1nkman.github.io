@@ -213,8 +213,25 @@ document.documentElement.style.setProperty("--efu-secondbg", "#1B1C20");
 
 })();
 // ------------------------------------------------------------------------------------------------------------
+(function injectSelectionStyle() {
+    const style = document.createElement('style');
+    style.id = 'dynamic-selection-style';
+    style.textContent = `
+        /* 针对 Chrome, Edge, Safari, Opera */
+        ::selection {
+            background: #a78bfa !important; /* 梦幻紫色，你可以换成 #f472b6 桃粉 */
+            color: #ffffff !important;
+        }
+        /* 针对 Firefox */
+        ::-moz-selection {
+            background: #a78bfa !important;
+            color: #ffffff !important;
+        }
+    `;
+    document.head.appendChild(style);
+})();
 
-
+// ------------------------------------------------------------------------------------------------------------
 
 document.getElementById("menu-darkmode")?.remove();
 document.getElementById("menu-translate")?.remove();
