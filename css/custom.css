@@ -6,3 +6,8 @@
     padding: 0 !important;
     pointer-events: none !important;
 }
+
+
+.body {
+  cursor: url('/img/ICT.gif'), auto;
+}

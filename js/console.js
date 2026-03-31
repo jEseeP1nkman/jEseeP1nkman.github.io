@@ -1,5 +1,5 @@
 // 控制台画图
-(function() {
+function doro() {
     // 页面加载完成后执行
     window.addEventListener('load', function() {
         // 字符画字符串（用\n实现换行，避免解析冲突）
@@ -21,7 +21,7 @@
             'color: #F7AFC7; font-family: monospace; font-size: 12px; line-height: 1.2;'
         );
     });
-})();
+};
 
 // 删除傻逼f12跳东西
 
@@ -227,13 +227,15 @@ document.documentElement.style.setProperty("--efu-secondbg", "#1B1C20");
             background: #a78bfa !important;
             color: #ffffff !important;
         }
+
+        
     `;
     document.head.appendChild(style);
 })();
 
 // ------------------------------------------------------------------------------------------------------------
-
-
+console.clear();
+doro() 
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -241,3 +243,6 @@ document.getElementById("menu-darkmode")?.remove();
 document.getElementById("menu-translate")?.remove();
 
 
+// ------------------------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------------------
