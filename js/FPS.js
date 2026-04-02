@@ -8,14 +8,10 @@ function isMobileDevice() {
     );
 }
 
-window.addEventListener("load", () => {
-    if (isMobileDevice()) return;
-    createUltraMonitor();
-});
-
 // ````````````````````````````````````````````````````````````````````````````````````````````````
 function createUltraMonitor() {
     const panel = document.createElement("div");
+    panel.id = "FPSBoard";
 
     Object.assign(panel.style, {
         position: "fixed",
@@ -45,16 +41,17 @@ function createUltraMonitor() {
     const canvasId = "fpsChart_" + Date.now();
 
     panel.innerHTML = `
-        <div style="font-size:12px;opacity:.6;">SYSTEM MONITOR</div>
-        <div id="fpsText" style="font-size:26px;font-weight:bold;">FPS --</div>
+        
+            <div  style="font-size:12px;opacity:.6;">Performance Dashboard</div>
+            <div id="fpsText" style="font-size:26px;font-weight:bold;">FPS --</div>
 
-        <canvas id="${canvasId}" width="240" height="80" style="margin-top:8px;"></canvas>
+            <canvas id="${canvasId}" width="240" height="80" style="margin-top:8px;"></canvas>
 
-        <div id="stats" style="margin-top:10px;font-size:12px;line-height:1.6;">
-            CPU: ${cpuName} (${cpuCores}C)<br>
-            GPU: Detecting...<br>
-            Ping: -- ms
-        </div>
+            <div id="stats" style="margin-top:10px;font-size:12px;line-height:1.6;">
+                CPU: ${cpuName} (${cpuCores}C)<br>
+                GPU: Detecting...<br>
+                Ping: -- ms
+            </div>
     `;
 
     document.body.appendChild(panel);
@@ -66,8 +63,6 @@ function createUltraMonitor() {
     let frames = 0;
     let lastTime = performance.now();
 
-    let cpuUsage = 20;
-    let gpuUsage = 20;
     let ping = 0;
 
     // 🎮 GPU检测（WebGL）
@@ -166,3 +161,22 @@ function createUltraMonitor() {
 
 
 // ````````````````````````````````````````````````````````````````````````````````````````````````
+let fpsBoardInitialized = false;
+
+window.ShowInitFPSBoard = function (){
+    function InitFPSBoard() {
+        const ConstFPSBoard = document.getElementById("FPSBoard");
+        if (ConstFPSBoard) ConstFPSBoard.remove();
+
+        if (isMobileDevice()) return;
+
+        createUltraMonitor();
+    }
+    InitFPSBoard();
+    if (!fpsBoardInitialized) {
+        window.addEventListener("load", InitFPSBoard);
+        document.addEventListener("pjax:complete", InitFPSBoard);
+        fpsBoardInitialized = true;
+    }
+
+}

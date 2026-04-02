@@ -1,7 +1,5 @@
 function Knowlege() {
 
-  
-
   // 防止重复创建
   if (document.getElementById("custom-popup")) return;
 
@@ -51,44 +49,7 @@ Object.assign(box.style, {
 
 // === 关闭按钮 ===
 const closeBtn = document.createElement("div");
-closeBtn.innerHTML = "✖";
-
-Object.assign(closeBtn.style, {
-  position: "absolute",
-  top: "8px",
-  right: "12px",
-  cursor: "pointer",
-  fontSize: "22px", // ⭐ 变大
-  color: "#ffd700", // 金色
-  width: "32px",
-  height: "32px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "50%",
-  transition: "all 0.25s ease",
-  userSelect: "none"
-});
-// 鼠标移入：放大 + 旋转 + 发光
-closeBtn.onmouseenter = () => {
-  closeBtn.style.transform = "scale(1.3) rotate(90deg)";
-  closeBtn.style.boxShadow = "0 0 10px rgba(255,215,0,0.8)";
-};
-
-// 鼠标移出：恢复
-closeBtn.onmouseleave = () => {
-  closeBtn.style.transform = "scale(1) rotate(0deg)";
-  closeBtn.style.boxShadow = "none";
-};
-
-// 点击：按压感
-closeBtn.onmousedown = () => {
-  closeBtn.style.transform = "scale(0.9)";
-};
-
-closeBtn.onmouseup = () => {
-  closeBtn.style.transform = "scale(1.3) rotate(90deg)";
-};
+closeBtn.innerHTML = "";
 
   closeBtn.onclick = function () {
     overlay.style.opacity = "0";
@@ -106,7 +67,9 @@ content.innerHTML = `
   <h3>1. 右键可以开关背景特效</h3>
   <h3>2. 右键可以开关欣赏模式（只保留背景）</h3>
   <h3>3. 右键可以开关手机，或者按下键盘"H"键也可以关闭</h3>
-  <h3>4. 喜欢本Blog的同学如果想要做同款或个别组件的联系我</h3>
+  <h3>4. 右键可以开关性能表盘</h3>
+  
+  <h3>喜欢本Blog的同学如果想要做同款或个别组件的联系我</h3>
   <h3>微信：jEseeP1nkman</h3>
   <h3>邮箱：li2510273890@gmail.com</h3>
 `;
@@ -117,7 +80,6 @@ content.innerHTML = `
 // ````````````````````````````````````````````````````````````````````````````````````````````
 
   // === 组装 ===
-  box.appendChild(closeBtn);
   box.appendChild(content);
   overlay.appendChild(box);
   document.body.appendChild(overlay);

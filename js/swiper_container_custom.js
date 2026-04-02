@@ -6,6 +6,7 @@
     style.id = "fix-swiper-style";
 
     style.innerHTML = `
+    
 #swiperBox {
   border: none !important;
   background: transparent !important;

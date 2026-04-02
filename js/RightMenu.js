@@ -149,6 +149,12 @@
         <div class="menu-item" onclick="toggleCleanMode()">
           <div class="menu-icon"><i class="fas fa-eye"></i> 开关欣赏模式</div>
         </div>
+
+        <div class="menu-item" onclick="toggleFPS()">
+          <div class="menu-icon"><i class="fas fa-gauge-high"></i> 开关性能表盘</div>
+        </div>
+
+        
       `;
 
       document.body.appendChild(menu);

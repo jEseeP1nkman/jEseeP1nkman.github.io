@@ -162,9 +162,11 @@ function initIphone(){
   }
 
   /* HTML */
+  
   const container=document.createElement("div")
   container.id="iphone17-container"
   container.innerHTML=`
+  
     <div class="iphone17">
       <div class="iphone-screen" id="iphoneScreen">
         <div class="dynamic-island"><div class="island-core" id="islandCore"></div></div>
