@@ -241,6 +241,7 @@ doro()
 
 document.getElementById("menu-darkmode")?.remove();
 document.getElementById("menu-translate")?.remove();
+document.getElementById("universe")?.remove();
 
 
 // ------------------------------------------------------------------------------------------------------------
