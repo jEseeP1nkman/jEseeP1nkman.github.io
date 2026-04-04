@@ -35,10 +35,10 @@ function BlogSettings() {
             }
         },
         {
-            title: "触发辐射版主题",
+            title: "触发辐射主题",
             img: "/img/Fallout4Tutorial.gif",
             callback: () => {
-                FuncFalloutBG();
+                toggleFalloutBG();
             }
         },
 

@@ -247,6 +247,7 @@ function PipboyIMG() {
 // ``````````````````````````````````````````````````````````````````````````````
 function applyCustomWastelandNav() {
   // 修正后的 CSS 字符串，去掉了大括号外面的非法分号
+
   const css = `
 
     #page-header.not-top-img #nav a {
@@ -302,6 +303,8 @@ function applyCustomWastelandNav() {
 
     }
   `;
+
+
 // ````````````````````````````````````````````````````````````````````````````````````````````````````````````````
     function forceToTopBtnColor() {
         const btn = document.querySelector('#page-header #nav #nav-right .nav-button a.totopbtn');
@@ -323,22 +326,6 @@ function applyCustomWastelandNav() {
     
 // ````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
-    function applyGlobalOverride() {
-      const css = `
-        /* 匹配所有行内样式里包含 #ffffff 的 div，强制变绿 */
-        div[style*="color: #ffffff"], 
-        div[style*="color: rgb(255, 255, 255)"] {
-          color: #00ff37  !important;
-        //   text-shadow: 0 0 5px #00ff37 !important;
-        }
-      `;
-
-      const styleElement = document.createElement('style');
-      styleElement.textContent = css;
-      document.head.appendChild(styleElement);
-    }
-
-    applyGlobalOverride();
 
 
 

@@ -10,7 +10,8 @@ function toggleCleanMode() {
       el.id === "ILoveUSDollar" ||
       el.id === "proMenu" ||
       el.id === "iphone17-container" ||
-      el.id === "vaultTerminal" 
+      el.id === "vaultTerminal" ||
+      el.id === "DeathStrandingBGElement"
 
       
     ) return;
