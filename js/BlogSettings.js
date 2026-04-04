@@ -16,7 +16,7 @@ function BlogSettings() {
             title: "开关网站背景",
             img: "/img/toggleILoveUSDollar.gif",
             callback: () => {
-                toggleILoveUSDollar();
+                disableILoveUSDollar();
             }
         },
         {
@@ -35,13 +35,12 @@ function BlogSettings() {
             }
         },
         {
-            title: "触发生日版主题",
-            img: "/img/BirthdaySurprise.gif",
+            title: "触发辐射版主题",
+            img: "/img/Fallout4Tutorial.gif",
             callback: () => {
-                BirthdayBlog();
+                FuncFalloutBG();
             }
         },
-
 
 
 

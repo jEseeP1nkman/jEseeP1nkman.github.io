@@ -7,9 +7,11 @@ function toggleCleanMode() {
 
     // ✅ 白名单（本体）
     if (
-      el.id === "universe" ||
+      el.id === "ILoveUSDollar" ||
       el.id === "proMenu" ||
-      el.id === "iphone17-container" 
+      el.id === "iphone17-container" ||
+      el.id === "vaultTerminal" 
+
       
     ) return;
 
