@@ -34,7 +34,7 @@ function toggleFalloutBG() {
             falloutSidebar.style.setProperty('display', 'flex', 'important'); // [cite: 58]
         }
 
-        console.log("主题已切换至：辐射废土");
+
 
     } else {
         // --- 切换回：美元 (USDollar) 主题 ---
@@ -65,6 +65,5 @@ function toggleFalloutBG() {
             dollarCanvas.style.zIndex = "-1"; 
         }
 
-        console.log("主题已切换至：美元背景");
     }
 }

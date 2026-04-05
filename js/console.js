@@ -242,6 +242,21 @@ doro()
 document.getElementById("menu-darkmode")?.remove();
 document.getElementById("menu-translate")?.remove();
 document.getElementById("universe")?.remove();
+// ------------------------------------------------------------------------------------------------------------
+
+function clearWaves() {
+    const waves = document.querySelector('.main-hero-waves-area.waves-area');
+    if (waves) {
+        waves.classList.remove('main-hero-waves-area', 'waves-area');
+        console.log('Waves cleared!'); // 调试用
+    }
+}
+
+// 1. 首次进入页面时执行
+document.addEventListener('DOMContentLoaded', clearWaves);
+
+// 2. Pjax 切换页面完成后执行 (适配大多数主题)
+document.addEventListener('pjax:complete', clearWaves); // 某些主题可能是 pjax:success
 
 // ------------------------------------------------------------------------------------------------------------
 

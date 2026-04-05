@@ -30,6 +30,7 @@
   background:
     linear-gradient(120deg, #1B1C20, #1B1C20, #1B1C20, #1B1C20);
 
+
   background-size: 200% 200%;
   animation: goldFlow 18s ease-in-out infinite;
 }
@@ -68,18 +69,6 @@
   transition: transform 0.4s ease;
 }
 
-/* ✂️ 票根 */
-.ticket-dashed-line {
-  position:absolute;
-  top:0;
-  bottom:0;
-  right:22%;
-  width:2px;
-
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.7) 50%, transparent 50%);
-  background-size:2px 15px;
-  z-index:7;
-}
 
 
 .ticket-notch {
@@ -87,7 +76,7 @@
   right:calc(22% - 10px);
   width:20px;
   height:20px;
-  background:#1B1C20;
+  background: #1B1C20;
   border-radius:50%;
   z-index:8;
 }
@@ -111,14 +100,7 @@
       container.insertAdjacentHTML("beforeend", `<div class="light-sweep"></div>`);
     }
 
-    if (!container.querySelector(".ticket-dashed-line")) {
-      container.insertAdjacentHTML("beforeend", `
-        <div class="swiper-ticket-mask"></div>
-        <div class="ticket-dashed-line"></div>
-        <div class="ticket-notch notch-top"></div>
-        <div class="ticket-notch notch-bottom"></div>
-      `);
-    }
+
 
     /* ✅ 防止事件重复绑定 */
     if (!container.dataset.binded) {
