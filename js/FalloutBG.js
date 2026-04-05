@@ -340,7 +340,7 @@ function applyCustomWastelandNav() {
     }
     /* 额外强制所有使用了该变量的元素变色 */
     [style*="--efu-main"],[style*="--efu-lighttext"],[style*="--efu-theme"],[style*="--efu-fontcolor"],[style*="--efu-card-bg"] {
-      --efu-lighttext: #00ff37 !important;
+      --efu-lighttext: #065516  !important;
       --efu-theme: #065516 !important;
       --efu-fontcolor: #00ff37 !important;
       --efu-main: #065516 !important;
@@ -357,7 +357,12 @@ function applyCustomWastelandNav() {
       --waline-white: #00ff37 !important;
       --efu-background: #071C0A !important;
       --efu-maskbgdeep: #071C0A !important;
-
+      --efu-secondtext: #00ff37 !important;
+      --efu-hltools-bg: #071C0A !important;
+      --efu-hl-bg: #071C0A !important;
+      --efu-white: #00ff37 !important;
+      --light-grey: #00ff37 !important;
+      --efu-white-op: #065516 !important;
     }
     .wl-btn.primary {
        background: #071C0A !important;
@@ -470,34 +475,7 @@ function applyCustomWastelandNav() {
 
 // ``````````````````````````````````````````````````````````````````````````````
 
-function FuncFalloutBG() {
- // ```````````````````````````````````````````````````````
 
-// ```````````````````````````````````````````````````````
-
-    PipboyIMG();
-    FalloutBG();
-    
-    applyCustomWastelandNav();
-    if (document.readyState === 'complete') {
-      applyCustomWastelandNav();
-    } else {
-      window.addEventListener('load', applyCustomWastelandNav);
-    }
-
-    // 情况 C: 如果是 PJAX 博客 (如 Butterfly, Solitude 等)
-    document.addEventListener('pjax:end', applyCustomWastelandNav);
-
-    // 情况 D: 终极监控（防止主题动态切换模式时重置颜色）
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-          applyCustomWastelandNav();
-        }
-      });
-    });
-    observer.observe(document.documentElement, { attributes: true });
-}
 // ```````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 function FalloutBottleCaps(customImg = '/img/FalloutBottleCaps.png', onClickAction) {
@@ -582,3 +560,31 @@ FalloutBottleCaps('/img/FalloutBottleCaps.png', () => {
 
 
 
+function FuncFalloutBG() {
+ // ```````````````````````````````````````````````````````
+
+// ```````````````````````````````````````````````````````
+
+    PipboyIMG();
+    FalloutBG();
+    
+    applyCustomWastelandNav();
+    if (document.readyState === 'complete') {
+      applyCustomWastelandNav();
+    } else {
+      window.addEventListener('load', applyCustomWastelandNav);
+    }
+
+    // 情况 C: 如果是 PJAX 博客 (如 Butterfly, Solitude 等)
+    document.addEventListener('pjax:end', applyCustomWastelandNav);
+
+    // 情况 D: 终极监控（防止主题动态切换模式时重置颜色）
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          applyCustomWastelandNav();
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true });
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>如何制作 “回到顶部” 悬浮按钮组件教程 | jEseeP1nkman's Blog</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="/img/touxiang.ico"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=2.0.10"><!-- inject head--><link rel="canonical" href="http://example.com/2026/04/05/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8/"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!-- aplayer--><!-- swiper--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="如何制作 “回到顶部” 悬浮按钮组件教程在网页设计中，当页面内容过长时，一个优雅的“回到顶部”按钮能极大地提升用户体验。本文将带你深度剖析一段纯 JavaScript 实现的组件，学习如何动态注入样式、监听滚动以及实现平滑动画。就像我的Blog里的一样，当你滑到Blog下面时右下角会出现一只可爱的小"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="jEseeP1nkman's Blog"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="/img/touxiang.ico"><link rel="apple-touch-icon" href="/img/touxiang.ico" sizes="180x180"><script>console.log(' %c Solitude %c ' + '2.0.10' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+          },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: undefined,
+    localsearch: {"preload":true,"path":"search.xml"},
+    runtime: 'false',
+    lazyload: {
+        enable: false,
+        error: '/img/touxiang.png'
+    },
+    copyright: false,
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。"}},
+    aside: {
+        sayhello: {
+            morning: "早上好，如果你喜欢我的博客，就把我的博客分享出去吧",
+            noon: "中午好，如果你喜欢我的博客，就把我的博客分享出去吧",
+            afternoon: "下午好，如果你喜欢我的博客，就把我的博客分享出去吧",
+            night: "晚安，如果你喜欢我的博客，就把我的博客分享出去吧",
+            goodnight: "晚安，如果你喜欢我的博客，就把我的博客分享出去吧",
+        },
+        sayhello2: [],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: true
+    },
+    comment: false,
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: false,
+    lure: false,
+    expire: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- background img--><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>首页</span></a></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/%E6%95%99%E7%A8%8B/">教程<sup>14</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F/">游戏<sup>33</sup></a><a href="/tags/Aerith/">Aerith<sup>1</sup></a><a href="/tags/%E5%88%86%E4%BA%AB/">分享<sup>1</sup></a><a href="/tags/%E6%98%BE%E5%8D%A1/">显卡<sup>1</sup></a><a href="/tags/%E5%85%B6%E4%BB%96/">其他<sup>4</sup></a><a href="/tags/Tifa/">Tifa<sup>1</sup></a><a href="/tags/Yuffie/">Yuffie<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><img src="/img/touxiang.ico" alt="jEseeP1nkman's Blog"><i class="solitude fa-solid fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">如何制作 “回到顶部” 悬浮按钮组件教程</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span>首页</span></a></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude fa-solid fa-magnifying-glass"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fa-solid fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fa-solid fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="/img/CatLove.gif" alt="如何制作 “回到顶部” 悬浮按钮组件教程"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tags-name tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>教程</span></a></div></div></div></div><h1 class="post-title">如何制作 “回到顶部” 悬浮按钮组件教程</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2026-04-05 22:23:40"><i class="post-meta-icon solitude fa-solid fa-calendar-days"></i><time datetime="2026-04-05T14:23:40.341Z">2026-04-05T14:23:40.341Z</time></span><span class="post-meta-date" title="最后更新于 2026-04-05 22:42:09"><i class="post-meta-icon solitude fa-solid fa-arrow-rotate-right"></i><time datetime="2026-04-05T14:42:09.766Z">2026-04-05T14:42:09.766Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fa-solid fa-file-word" title="文章字数"></i><span class="word-count">1.1k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fa-solid fa-clock" title="阅读耗时"></i><span>4 min</span></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="如何制作-“回到顶部”-悬浮按钮组件教程"><a href="#如何制作-“回到顶部”-悬浮按钮组件教程" class="headerlink" title="如何制作 “回到顶部” 悬浮按钮组件教程"></a>如何制作 “回到顶部” 悬浮按钮组件教程</h1><p>在网页设计中，当页面内容过长时，一个优雅的“回到顶部”按钮能极大地提升用户体验。本文将带你深度剖析一段纯 JavaScript 实现的组件，学习如何动态注入样式、监听滚动以及实现平滑动画。<br>就像我的Blog里的一样，当你滑到Blog下面时右下角会出现一只可爱的小猫，当你点击她，整个Blog就会平滑的回到顶部了.</p>
+<h2 id="1-组件功能概览"><a href="#1-组件功能概览" class="headerlink" title="1. 组件功能概览"></a>1. 组件功能概览</h2><blockquote>
+<p>智能显示：只有页面滚动到指定高度（如 300px）时才显示。</p>
+<p>丝滑体验：使用原生 CSS 过渡动画和 JS 平滑滚动算法。</p>
+<p>动态注入：无需手动修改 HTML&#x2F;CSS，一个脚本完成所有初始化。</p>
+<p>环境适配：兼容 PJAX（如 Hexo, Butterfly 等博客系统）的异步刷新。</p>
+</blockquote>
+<h2 id="2-完整源码与配置"><a href="#2-完整源码与配置" class="headerlink" title="2. 完整源码与配置"></a>2. 完整源码与配置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 【1. 参数配置】</span></span><br><span class="line">    <span class="keyword">const</span> config = &#123;</span><br><span class="line">        <span class="attr">imgUrl</span>: <span class="string">&#x27;/img/top.png&#x27;</span>,  <span class="comment">// 你的按钮图标路径</span></span><br><span class="line">        <span class="attr">size</span>: <span class="string">&#x27;100px&#x27;</span>,           <span class="comment">// 按钮大小</span></span><br><span class="line">        <span class="attr">right</span>: <span class="string">&#x27;10%&#x27;</span>,            <span class="comment">// 距离右侧的距离</span></span><br><span class="line">        <span class="attr">bottom</span>: <span class="string">&#x27;30px&#x27;</span>,          <span class="comment">// 距离底部的距离</span></span><br><span class="line">        <span class="attr">showAt</span>: <span class="number">300</span>              <span class="comment">// 滚动超过 300px 出现</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【2. 创建 DOM 元素】</span></span><br><span class="line">    <span class="keyword">const</span> bttBtn = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">    bttBtn.<span class="property">id</span> = <span class="string">&#x27;custom-back-to-top&#x27;</span>;</span><br><span class="line">    bttBtn.<span class="property">innerHTML</span> = <span class="string">`&lt;img src=&quot;<span class="subst">$&#123;config.imgUrl&#125;</span>&quot; alt=&quot;Top&quot; style=&quot;width:100%; display:block;&quot;&gt;`</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(bttBtn);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【3. 样式注入】</span></span><br><span class="line">    <span class="keyword">const</span> style = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;style&#x27;</span>);</span><br><span class="line">    style.<span class="property">textContent</span> = <span class="string">`</span></span><br><span class="line"><span class="string">        #custom-back-to-top &#123;</span></span><br><span class="line"><span class="string">            position: fixed;</span></span><br><span class="line"><span class="string">            right: <span class="subst">$&#123;config.right&#125;</span>;</span></span><br><span class="line"><span class="string">            bottom: <span class="subst">$&#123;config.bottom&#125;</span>;</span></span><br><span class="line"><span class="string">            width: <span class="subst">$&#123;config.size&#125;</span>;</span></span><br><span class="line"><span class="string">            cursor: pointer;</span></span><br><span class="line"><span class="string">            z-index: 10000;</span></span><br><span class="line"><span class="string">            opacity: 0;</span></span><br><span class="line"><span class="string">            visibility: hidden;</span></span><br><span class="line"><span class="string">            transition: all 0.3s ease-in-out;</span></span><br><span class="line"><span class="string">            transform: translateY(20px); /* 初始位移，用于做升起动画 */</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        #custom-back-to-top.is-visible &#123;</span></span><br><span class="line"><span class="string">            opacity: 1;</span></span><br><span class="line"><span class="string">            visibility: visible;</span></span><br><span class="line"><span class="string">            transform: translateY(0);    /* 回到原位 */</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">        #custom-back-to-top:hover &#123;</span></span><br><span class="line"><span class="string">            transform: scale(1.1);       /* 悬停放大效果 */</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(style);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【4. 滚动逻辑】</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">handleScroll</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="comment">// 判断当前滚动条位置是否超过了阈值</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">pageYOffset</span> &gt; config.<span class="property">showAt</span>) &#123;</span><br><span class="line">            bttBtn.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;is-visible&#x27;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            bttBtn.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;is-visible&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【5. 执行回顶】</span></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">scrollToTop</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="variable language_">window</span>.<span class="title function_">scrollTo</span>(&#123;</span><br><span class="line">            <span class="attr">top</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">behavior</span>: <span class="string">&#x27;smooth&#x27;</span> <span class="comment">// 核心：开启浏览器原生平滑滚动</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【6. 事件绑定】</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;scroll&#x27;</span>, handleScroll);</span><br><span class="line">    bttBtn.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, scrollToTop);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【7. 兼容性支持】</span></span><br><span class="line">    <span class="comment">// 针对 PJAX 系统，在页面局部刷新后重新计算状态</span></span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;pjax:complete&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">handleScroll</span>();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-核心技术点深度解析"><a href="#3-核心技术点深度解析" class="headerlink" title="3. 核心技术点深度解析"></a>3. 核心技术点深度解析</h2><h3 id="A-闭包封装-IIFE"><a href="#A-闭包封装-IIFE" class="headerlink" title="A. 闭包封装 (IIFE)"></a>A. 闭包封装 (IIFE)</h3><blockquote>
+<p>代码最外层包裹了 (function() { … })();。</p>
+<p>作用：创建一个独立的作用域，避免变量 config、bttBtn 与你网页中原有的脚本产生命名冲突。</p>
+</blockquote>
+<h3 id="B-动态注入-CSS"><a href="#B-动态注入-CSS" class="headerlink" title="B. 动态注入 CSS"></a>B. 动态注入 CSS</h3><blockquote>
+<p>通过 document.createElement(‘style’) 将样式插入 <head>。</p>
+<p>优势：真正的“即插即用”。你只需要引入一个 .js 文件，不需要额外去改动 .css 文件，非常利于组件化管理。</p>
+</blockquote>
+<h3 id="C-动画组合拳"><a href="#C-动画组合拳" class="headerlink" title="C. 动画组合拳"></a>C. 动画组合拳</h3><blockquote>
+<p>样式中使用了 opacity、visibility 和 transform 的组合：</p>
+<p>opacity: 0 + visibility: hidden：确保按钮完全隐藏且不可被点击。</p>
+<p>translateY(20px)：初始状态将按钮向下压低 20 像素。</p>
+<p>.is-visible 状态：当满足滚动条件时，按钮变透明为不透明，并向上移动回到原位，产生一种“浮现”的效果。</p>
+</blockquote>
+<h3 id="D-平滑滚动"><a href="#D-平滑滚动" class="headerlink" title="D. 平滑滚动"></a>D. 平滑滚动</h3><blockquote>
+<p>window.scrollTo({ top: 0, behavior: ‘smooth’ }) 是现代浏览器的原生 API。</p>
+<p>注意：它比传统的 window.scrollTo(0, 0) 更加友好，不需要引入额外的动画库（如 Tween.js）即可实现丝滑的视觉过渡。</p>
+</blockquote>
+<h3 id="E-PJAX-适配"><a href="#E-PJAX-适配" class="headerlink" title="E. PJAX 适配"></a>E. PJAX 适配</h3><blockquote>
+<p>如果你的博客（如 Hexo）使用了 PJAX 局部刷新，浏览器在切换页面时并不会刷新整个网页。document.addEventListener(‘pjax:complete’, …) 确保了在切换页&gt;面后，按钮能根据新页面的滚动高度自动修正显示状态。</p>
+</blockquote>
+<h2 id="4-如何部署"><a href="#4-如何部署" class="headerlink" title="4. 如何部署"></a>4. 如何部署</h2><blockquote>
+<p>修改配置：将 config 中的 imgUrl 指向你自己的图标。</p>
+<p>存为文件：保存为 back-to-top.js。</p>
+<p>页面引入：<br>在 HTML 文件的 </body> 前加入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/js/back-to-top.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></blockquote>
+<h2 id="5-常见问题排查"><a href="#5-常见问题排查" class="headerlink" title="5. 常见问题排查"></a>5. 常见问题排查</h2><blockquote>
+<p>图标不显示：请检查 imgUrl 的路径是否正确，按 F12 查看控制台是否有 404 报错。</p>
+<p>层级问题：如果按钮被页面其他元素遮挡，请调高 CSS 中的 z-index 值。</p>
+<p>滚动不平滑：部分旧版浏览器可能不支持 behavior: ‘smooth’，此时会直接跳转到顶部，不影响基本功能。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/"><img class="post-copyright__author_img_front" src="/img/touxiang.ico"></a><div class="post-copyright__author_name">jEseeP1nkman's Blog</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="social-share"><a class="social-share-ico icon-qq" target="_blank" rel="noopener" href="https://connect.qq.com/widget/shareqq/index.html?url=http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F&amp;title=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B&amp;desc=undefined&amp;summary=undefined&amp;site=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B&amp;pics=%2Fimg%2FCatLove.gif" title="分享到QQ"><i class="solitude fab fa-qq"></i></a><a class="social-share-ico icon-weibo" target="_blank" rel="noopener" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F&amp;title=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B&amp;pic=%2Fimg%2FCatLove.gif" title="分享到微博"><i class="solitude fab fa-weibo"></i></a><a class="social-share-ico icon-twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F&amp;text=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B" title="分享到Twitter"><i class="solitude fab fa-twitter"></i></a><a class="social-share-ico icon-facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F" title="分享到Facebook"><i class="solitude fab fa-facebook"></i></a><a class="social-share-ico icon-telegram" target="_blank" rel="noopener" href="https://t.me/share/url?url=http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F&amp;text=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B" title="分享到Telegram"><i class="solitude fab fa-telegram"></i></a><a class="social-share-ico icon-whatsapp" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F" title="分享到WhatsApp"><i class="solitude fab fa-whatsapp"></i></a><a class="social-share-ico icon-linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fexample.com%2F2026%2F04%2F05%2F%25E5%259B%259E%25E5%2588%25B0%25E9%25A1%25B6%25E9%2583%25A8%2F&amp;title=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B&amp;summary=undefined&amp;source=%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%20%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D%20%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B" title="分享到LinkedIn"><i class="solitude fab fa-linkedin"></i></a></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a href="/"></a>协议，完整转载请注明来自<a href="/">jEseeP1nkman's Blog</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>教程<span class="tagsPageCount">14</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/04/02/CrimsonDesert/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CrimsonDesert //红色沙漠</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="solitude fa-solid fa-star"></i><span>喜欢这篇的人也看了</span><div class="relatedPosts-link"><a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a></div></div><div class="relatedPosts-list"><div><a href="/2026/03/29/Fallout4Tutorial/" title="Fallout4 &#x2F;&#x2F; 辐射4 简中汉化（ANK）和解除锁帧教程"><img class="cover" src="/img/Fallout4Tutorial.gif" alt="cover"><div class="content is-center"><div class="title">Fallout4 &#x2F;&#x2F; 辐射4 简中汉化（ANK）和解除锁帧教程</div></div></a></div><div><a href="/2026/03/29/Internet%20Download%20Manager%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" title="Internet Download Manager 下载安装破解教程"><img class="cover" src="/img/Internet%20Download%20Manager%20%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.gif" alt="cover"><div class="content is-center"><div class="title">Internet Download Manager 下载安装破解教程</div></div></a></div><div><a href="/2026/03/07/TeachHowToMakeiphone17/" title="在博客里放一个可拖动的 iPhone 组件（完整实现教程）"><img class="cover" src="/img/TeachHowToMakeiphone17.gif" alt="cover"><div class="content is-center"><div class="title">在博客里放一个可拖动的 iPhone 组件（完整实现教程）</div></div></a></div></div></div><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fa-solid fa-comment"></i><span> 评论</span><span class="count"> (<span class="waline-comment-count"><i class="solitude fa-solid fa-spinner"></i></span>)</span></div></div><div class="comment-wrap"><div id="waline-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fa-solid fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C-%E2%80%9C%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E2%80%9D-%E6%82%AC%E6%B5%AE%E6%8C%89%E9%92%AE%E7%BB%84%E4%BB%B6%E6%95%99%E7%A8%8B"><span class="toc-text">如何制作 “回到顶部” 悬浮按钮组件教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BB%84%E4%BB%B6%E5%8A%9F%E8%83%BD%E6%A6%82%E8%A7%88"><span class="toc-text">1. 组件功能概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%8C%E6%95%B4%E6%BA%90%E7%A0%81%E4%B8%8E%E9%85%8D%E7%BD%AE"><span class="toc-text">2. 完整源码与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">3. 核心技术点深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A-%E9%97%AD%E5%8C%85%E5%B0%81%E8%A3%85-IIFE"><span class="toc-text">A. 闭包封装 (IIFE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E5%8A%A8%E6%80%81%E6%B3%A8%E5%85%A5-CSS"><span class="toc-text">B. 动态注入 CSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-%E5%8A%A8%E7%94%BB%E7%BB%84%E5%90%88%E6%8B%B3"><span class="toc-text">C. 动画组合拳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D-%E5%B9%B3%E6%BB%91%E6%BB%9A%E5%8A%A8"><span class="toc-text">D. 平滑滚动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E-PJAX-%E9%80%82%E9%85%8D"><span class="toc-text">E. PJAX 适配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2"><span class="toc-text">4. 如何部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-text">5. 常见问题排查</span></a></li></ol></li></ol></div></div><div class="card-widget card-navigation"><style>/* 红框容器样式 */
+.card-navigation {
+  padding: 1rem !important;
+  background: rgba(25, 25, 25, 0.8) !important;
+  border: 1px solid rgba(255, 200, 72, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 12px;
+}
+/* 标题 */
+.card-navigation .item-headline {
+  margin-bottom: 0.8rem;
+  color: #ffc848 !important;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* 九宫格网格 */
+.navigation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+/* 单个黄框卡片 */
+.nav-card-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 200, 72, 0.2);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 3 / 4;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+.nav-card-item:hover {
+  background: rgba(255, 200, 72, 0.1) !important;
+  border-color: #ffc848 !important;
+  transform: translateY(-3px);
+}
+.nav-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.nav-card-content i {
+  font-size: 1.2rem;
+}
+.nav-card-content span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+</style><div class="item-headline"><i class="fas fa-th-large"></i><span>快捷导航</span></div><div class="navigation-grid"><a class="nav-card-item" href="/2026/03/05/ICT/" title="图片压缩"><div class="nav-card-content"><i class="fas fa-file-image" style="color: #ffc848"></i><span>压缩工具</span></div></a><a class="nav-card-item" href="/2026/03/03/SlotMachine/" title="老虎机"><div class="nav-card-content"><i class="fas fa-gamepad" style="color: #ffc848"></i><span>老虎机</span></div></a><a class="nav-card-item" href="/2026/03/03/food/" title="吃什么"><div class="nav-card-content"><i class="fas fa-utensils" style="color: #ffc848"></i><span>吃什么</span></div></a><a class="nav-card-item" href="/2025/02/16/Rename/" title="重命名"><div class="nav-card-content"><i class="fas fa-file-signature" style="color: #ffc848"></i><span>重命名</span></div></a><a class="nav-card-item" href="/2026/03/05/ToBase64/" title="图片转Base64"><div class="nav-card-content"><i class="fas fa-camera" style="color: #ffc848"></i><span>图片转Base64</span></div></a></div></div></div></div></main><footer id="footer"></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=2.0.10"></script><script src="/js/main.js?v=2.0.10"></script><script src="/js/third_party/waterfall.min.js?v=2.0.10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/third_party/universe.min.js?v=2.0.10"></script><script>dark()
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script><script src="/js/covercolor/local.js?v=2.0.10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="/js/console.js"></script><script src="/js/iphone17.js"></script><script src="/js/Fall.js"></script><script src="/js/PressH.js"></script><script src="/js/swiper_container_custom.js"></script><script src="/js/toggleILoveUSDollar.js"></script><script src="/js/toggleCleanMode.js"></script><script src="/js/Knowlege.js"></script><script src="/js/LeiSheTieZhi.js"></script><script src="/js/Sticky_Right_Card.js"></script><script src="/js/ToTopRacket.js"></script><script src="/js/GameReleaseStickyRightCard.js"></script><script src="/js/2023PlaceBackground.js"></script><script src="/js/RightMenu.js"></script><script src="/js/toggleIphone.js"></script><script src="/js/ILoveUSDollar.js"></script><script src="/js/FPS.js"></script><script src="/js/toggleFPS.js"></script><script src="/js/CommentCustom.js"></script><script src="/js/BlogSettings.js"></script><script src="/js/IsMobile.js"></script><script src="/js/MouseClicker.js"></script><script src="/js/FalloutBG.js"></script><script src="/js/toggleFalloutBG.js"></script><script src="/js/SwitchILoveUSDollar.js"></script><script src="/js/DeathStrandingBG.js"></script><script src="/js/toggleDeathStrandingBG.js"></script><div class="js-pjax"><script>(() => {
+    let walineInitFunction = window.walineFn || null
+
+    function initWaline(initFn) {
+        const walineOptions = {
+            el: '#waline-wrap',
+            serverURL: 'https://jeseep1nkmanwaline.vercel.app/',
+            pageview: false,
+            dark: 'html[data-theme="dark"]',
+            path: window.location.pathname,
+            comment: true,
+            ...null
+        }
+        const walineInstance = initFn(walineOptions)
+        utils.addGlobalFn('pjax', () => walineInstance.destroy(), 'destroyWaline')
+        GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#comment .wl-content img:not(.wl-emoji)'))
+        sco.owoBig({
+            body: '.wl-emoji-popup',
+            item: '.wl-tab-wrapper button'
+        })
+    }
+
+    async function loadWaline() {
+        if (walineInitFunction) initWaline(walineInitFunction)
+        else {
+            await utils.getCSS('https://cdnjs.cloudflare.com/ajax/libs/waline/3.3.0/waline.min.css')
+            const {init} = await import('https://cdnjs.cloudflare.com/ajax/libs/waline/3.3.0/waline.min.js')
+            walineInitFunction = init || Waline.init
+            initWaline(walineInitFunction)
+            window.walineFn = walineInitFunction
+        }
+        false && barrageWaline()
+    }
+
+    if (true || false) {
+        if (false) utils.loadComment(document.getElementById('waline-wrap'), loadWaline)
+        else loadWaline()
+    } else window.loadTwoComment = loadWaline
+})()
+</script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined)
+        document.documentElement.setAttribute('data-theme', 'dark');
+    else
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    typeof rm === 'object' && rm.mode(cachedMode === undefined || cachedMode === 'dark')
+}
+initTheme()</script><!-- google adsense--><!-- search--><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="solitude fa-solid fa-xmark"></i></button></nav><div class="search-wrap"><div class="search-box"><input class="search-box-input" id="search-input" type="text" autocomplete="off" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="输入关键词快速查找"></div><div id="search-results"><div id="search-hits"></div></div><div id="search-pagination"></div><div id="search-tips"></div></div></div><div id="search-mask"></div></div><script src="/js/search/local.js?v=2.0.10"></script><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["2025/02/01/1080p显示器开4K/","2025/02/01/BlackMythWukong/","2025/02/01/APlagueTaleRequiem/","2025/07/14/BloodandWine/","2025/02/01/Aerith/","2025/09/14/Catsithfamily/","2026/04/02/CrimsonDesert/","2025/02/01/Cyberpunk2077/","2025/02/01/DeathStranding/","2025/02/01/DYNASTYWARRIORSORIGINS/","2025/02/01/DetroitBecomeHuman/","2025/02/01/DlssgToFSR3/","2025/02/01/FF7Rebirth/","2025/02/01/FF7Remake/","2026/03/29/Fallout4Tutorial/","2025/02/01/FinalFantasy15/","2025/02/01/FinalFantasy16/","2025/02/01/Frostpunk2/","2025/02/01/GPUTop/","2025/02/01/GameSaves/","2025/06/30/HeartsofStone/","2025/02/03/ImageBed/","2026/03/05/ICT/","2026/03/29/Internet Download Manager 下载安装教程/","2025/02/16/KCD2/","2025/02/01/KingdomComeDeliverance/","2025/02/01/MSI Afterburner使用教程/","2025/02/01/LosslessScaling/","2025/08/20/MafiaTheOldCountry/","2025/02/01/MetroExodus/","2025/02/01/MinecrafModsInstall/","2025/02/01/OnlyYou/","2025/02/16/Rename/","2026/03/01/ResidentEvil9/","2025/10/07/SilentHillF/","2025/02/01/Starfield/","2025/02/01/SilentHill2/","2026/03/09/StellarBlade/","2026/03/07/TeachHowToMakeiphone17/","2025/04/23/TheLastOfUsPart2/","2025/06/22/TheWitcher3/","2025/02/01/Tifa/","2026/03/05/ToBase64/","2025/02/01/UntilDawn/","2025/02/01/Windows优化与帮助/","2025/02/01/Yuffie/","2026/03/03/food/","2025/02/01/v2rayN食用/","2025/02/01/电脑控制手机/","2025/02/01/GhostOfTsushima/","2025/02/01/TheLastOfUsPart1/","2025/02/01/Mods/","2026/04/05/回到顶部/"];function toRandomPost(){ pjax.loadUrl(GLOBAL_CONFIG.root+posts[Math.floor(Math.random()*posts.length)]); }</script>

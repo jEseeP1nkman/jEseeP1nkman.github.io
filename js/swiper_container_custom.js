@@ -30,7 +30,6 @@
   background:
     linear-gradient(120deg, #1B1C20, #1B1C20, #1B1C20, #1B1C20);
 
-
   background-size: 200% 200%;
   animation: goldFlow 18s ease-in-out infinite;
 }
