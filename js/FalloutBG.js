@@ -472,7 +472,6 @@ function applyCustomWastelandNav() {
 
 function FuncFalloutBG() {
  // ```````````````````````````````````````````````````````
-    toggleILoveUSDollar();
 
 // ```````````````````````````````````````````````````````
 
