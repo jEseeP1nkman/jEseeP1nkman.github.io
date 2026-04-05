@@ -1,30 +1,9 @@
-/* 1. 动画定义保持不变 */
-@keyframes rainbow-text {
-    0% { color: #ff5f5f !important; text-shadow: 0 0 5px rgba(255, 95, 95, 0.3) !important; }
-    25% { color: #ffbf37 !important; }
-    50% { color: #5eff5e !important; }
-    75% { color: #5ec8ff !important; }
-    100% { color: #ff5f5f !important; }
+#category-bar {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
 }
 
-/* 2. 暴力覆盖：使用 ID 选择器提高权重 */
-#hometop #banner-wrap .banner-title,
-#hometop #banner-wrap .banner-title span,
-div#banner-wrap h1.banner-title,
-.banner-title {
-    /* 核心：必须强制禁用背景渐变，否则变色动画被遮挡 */
-    background: none !important;
-    background-image: none !important;
-    -webkit-background-clip: unset !important;
-    background-clip: unset !important;
-    
-    /* 核心：取消主题自带的文字填充颜色 */
-    -webkit-text-fill-color: initial !important;
-    
-    /* 应用动画：设置较快的时间看是否生效 */
-    animation: rainbow-text 3s infinite linear !important;
-    
-    /* 确保文字始终可见 */
-    opacity: 1 !important;
-    visibility: visible !important;
-}

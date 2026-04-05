@@ -12,13 +12,7 @@ function BlogSettings() {
 
     // --- 1. 自定义配置区 (你可以在这里修改卡片的内容和点击后的动作) ---
     const cards = [
-        {
-            title: "开关网站背景",
-            img: "/img/toggleILoveUSDollar.gif",
-            callback: () => {
-                disableILoveUSDollar();
-            }
-        },
+
         {
             title: "开关欣赏模式",
             img: "/img/toggleCleanMode.gif",

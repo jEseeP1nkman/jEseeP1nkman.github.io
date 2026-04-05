@@ -142,10 +142,6 @@
           <div class="menu-icon"><i class="fas fa-power-off"></i> 开关手机屏幕</div>
         </div>
 
-        <div class="menu-item" onclick="toggleILoveUSDollar()">
-          <div class="menu-icon"><i class="fas fa-palette"></i> 开关网站背景</div>
-        </div>
-
         <div class="menu-item" onclick="toggleCleanMode()">
           <div class="menu-icon"><i class="fas fa-eye"></i> 开关欣赏模式</div>
         </div>
