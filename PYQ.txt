@@ -1,0 +1,15 @@
+Touxiang: /img/touxiang.ico
+Name: Deutsche
+Text: 🇨🇳 🇭🇰 🇲🇴 🇹🇼 🇺🇸 🇬🇧 🇯🇵 🇰🇷 🇷🇺 🇫🇷 🇩🇪 🇮🇹 🇨🇦 🇦🇺
+Images: /img/1.png, /img/2.png, /img/3.png,/img/4.png, /img/5.png, /img/6.png,/img/7.png, /img/8.png, /img/9.png
+---
+Touxiang: /img/touxiang.ico
+Name: Deutsche
+Text: 这是第二条动态，自动排在上面。
+Images: /img/4.png, /img/5.png
+---
+Touxiang: /img/touxiang.ico
+Name: Deutsche
+Text: 这是第二条动态，自动排在上面。
+Images: /img/4.png, /img/5.png
+---
