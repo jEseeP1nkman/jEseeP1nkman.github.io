@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>跳过Bilibili恰饭广告插件</title>
+      <link href="/2026/04/19/%E8%B7%B3%E8%BF%87Bilibili%E6%81%B0%E9%A5%AD%E5%B9%BF%E5%91%8A%E6%8F%92%E4%BB%B6/"/>
+      <url>/2026/04/19/%E8%B7%B3%E8%BF%87Bilibili%E6%81%B0%E9%A5%AD%E5%B9%BF%E5%91%8A%E6%8F%92%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Github-地址"><a href="#Github-地址" class="headerlink" title="Github 地址"></a>Github 地址</h1><p><a href="https://github.com/hanydd/BilibiliSponsorBlock">https://github.com/hanydd/BilibiliSponsorBlock</a></p><h1 id="小电视空降助手"><a href="#小电视空降助手" class="headerlink" title="小电视空降助手"></a>小电视空降助手</h1><p>受够了视频中无处不在的赞助广告了吗？受够了看了一半才发现的软广视频了吗？小电视空降助手是一款帮你精准空降到广告之后的浏览器插件。插件自动获取并跳过广告片段，让你的视频体验毫无中断！</p><p>除了广告之外，插件还支持跳过其他类别的片段，例如开场结尾的动画、一键三连提示，或者直接空降到视频封面的位置。插件中所有的标注片段都来自网友标注，您也可以提交自己的片段来为空降指挥部添砖加瓦。</p><p><img src="https://lh3.googleusercontent.com/5ToybyHMeABw74dbRvjtee3iJQB-WUwH260tDtYzCRfO9fTy8EKQ0LwoMD2KChlKfIYnd7vchEO94GO_p1RsqSVg=s1280-w1280-h800"></p><h1 id="Chrome-插件地址"><a href="#Chrome-插件地址" class="headerlink" title="Chrome 插件地址"></a>Chrome 插件地址</h1><p><a href="https://chromewebstore.google.com/detail/%E5%B0%8F%E7%94%B5%E8%A7%86%E7%A9%BA%E9%99%8D%E5%8A%A9%E6%89%8B/eaoelafamejbnggahofapllmfhlhajdd">https://chromewebstore.google.com/detail/%E5%B0%8F%E7%94%B5%E8%A7%86%E7%A9%BA%E9%99%8D%E5%8A%A9%E6%89%8B/eaoelafamejbnggahofapllmfhlhajdd</a></p><h1 id="macOS-Safari-安装（源码构建）"><a href="#macOS-Safari-安装（源码构建）" class="headerlink" title="macOS Safari 安装（源码构建）"></a>macOS Safari 安装（源码构建）</h1><p>Safari 版本通过 Safari Web Extension 打包。项目已提供一键脚本：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先准备配置文件和依赖</span><br><span class="line">cp config.json.example config.json</span><br><span class="line">npm ci</span><br><span class="line"></span><br><span class="line"># 构建 Safari 扩展并生成 macOS Xcode 工程</span><br><span class="line">npm run build:safari:macos</span><br></pre></td></tr></table></figure><p>默认会在项目根目录生成 safari&#x2F; Xcode 工程。然后：</p><ol><li>使用 Xcode 打开 safari&#x2F; 工程并编译运行。</li><li>打开 Safari -&gt; 设置 -&gt; 扩展，启用对应扩展。<br>可选环境变量（用于自定义工程信息）：</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BSB_SAFARI_APP_NAME=&quot;小电视空降助手&quot; \</span><br><span class="line">BSB_SAFARI_BUNDLE_ID=&quot;top.bsbsb.safari&quot; \</span><br><span class="line">BSB_SAFARI_PROJECT_DIR=&quot;safari&quot; \</span><br><span class="line">npm run build:safari:macos</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DeathStranding2</title>
       <link href="/2026/04/10/DeathStranding2/"/>
       <url>/2026/04/10/DeathStranding2/</url>

@@ -31,7 +31,6 @@
         // 【关键】检查你的 ID 是否正确，可以在控制台看有没有这行 log
         const menu = document.getElementById('nav-right');
         if (!menu) {
-            console.log('未找到 id="nav-right" 元素，请检查你的主题 HTML 结构');
             return;
         }
 
@@ -55,7 +54,6 @@
             }
         };
         menu.appendChild(btn);
-        console.log('翻译按钮已成功插入到 #nav-right');
     }
 
     function initTranslate() {
@@ -72,7 +70,6 @@
     const pjaxEvents = ['pjax:complete', 'pjax:end', 'pjax:success', 'theme:pjax', 'DOMContentLoaded'];
     pjaxEvents.forEach(event => {
         document.addEventListener(event, function() {
-            console.log('检测到页面跳转/加载事件:', event);
             // 给一点点延迟，确保 DOM 已经稳了
             setTimeout(injectTranslateBtn, 500);
             
